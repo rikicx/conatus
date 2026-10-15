@@ -96,17 +96,21 @@ export const services = [
     id: "avaliacao",
     index: "S1",
     name: "Avaliação inicial",
-    summary: "O ponto de partida.",
-    body: "Uma leitura completa de marcha, equilíbrio, força e amplitude. Define o plano e o que tratar primeiro.",
+    summary: "O ponto de partida — gratuita.",
+    body: "Uma leitura completa de marcha, equilíbrio, força e amplitude. Define o plano e o que tratar primeiro, seja qual for o motivo que trouxe você até aqui.",
     seed: "avaliacao",
+    alt: "Profissional da Conatus aferindo a pressão arterial de uma aluna antes do treino.",
+    position: "object-[center_27%]",
   },
   {
     id: "fisioterapia",
     index: "S2",
     name: "Fisioterapia especializada",
     summary: "Reabilitação com foco em função.",
-    body: "Recuperação de lesões, dor e limitações de movimento — com atenção a quem quer voltar a andar, subir escadas e virar sem insegurança.",
+    body: "Recuperação de lesões, cirurgias, dor e limitações de movimento — com atenção a quem quer voltar a andar, subir escadas e virar sem insegurança.",
     seed: "fisioterapia",
+    alt: "Profissional da Conatus ajusta a postura de um aluno em equipamento de treino.",
+    position: "object-[center_39%]",
   },
   {
     id: "musculacao",
@@ -115,6 +119,8 @@ export const services = [
     summary: "Treino de força orientado.",
     body: "Musculação especializada para a maturidade, acompanhada movimento a movimento por profissionais. Contra a sarcopenia, a favor da autonomia.",
     seed: "musculacao",
+    alt: "Aluna treina no leg press enquanto um profissional de uniforme Conatus acompanha.",
+    position: "object-[center_43%]",
   },
   {
     id: "pilates",
@@ -123,6 +129,8 @@ export const services = [
     summary: "Controle, respiração, amplitude.",
     body: "Turmas em dias fixos, como alternativa e complemento ao treino de força. Trabalha estabilidade, mobilidade e consciência de movimento.",
     seed: "pilates",
+    alt: "Aluna em exercício de equilíbrio na cadeira de Pilates, com acompanhamento de uma profissional.",
+    position: "object-[center_62%]",
   },
   {
     id: "nutricao",
@@ -131,6 +139,8 @@ export const services = [
     summary: "O treino não trabalha sozinho.",
     body: "Sem tijolos não se levanta parede. A equipe de nutrição garante que o corpo receba o que precisa para se refazer e evoluir.",
     seed: "nutricao",
+    alt: "Imagem ilustrativa: equipamento de treino em luz suave.",
+    position: undefined,
   },
 ] as const;
 
@@ -144,6 +154,39 @@ export const signals = [
   "Precisar de apoio para caminhar",
   "Insegurança ao virar ou mudar de direção",
   "Alterações no equilíbrio",
+] as const;
+
+/* ---- Perguntas antes de ligar ----
+   Answers to real objections. Where Conatus's own channels confirm a fact
+   (avaliação gratuita), it's stated plainly. Where the answer depends on
+   the individual case or isn't publicly confirmed (convênio, acesso ao
+   espaço, casos pós-cirúrgicos específicos), the answer says so honestly
+   and routes to WhatsApp — never invents a yes or a no. */
+export const faq = [
+  {
+    q: "Nunca fiz fisioterapia nem treino. Serve pra mim?",
+    a: "Serve — é justamente pra isso que existe a avaliação inicial. Ela lê onde o seu corpo está agora e define o que faz sentido a partir daí, sem exigir histórico ou experiência prévia.",
+  },
+  {
+    q: "Tenho uma cirurgia recente, prótese ou uma lesão. Vocês atendem esse caso?",
+    a: "Cada corpo chega de um jeito diferente — cirurgia recente, prótese, uma queda, uma dor que não passa. Conte o que está acontecendo pelo WhatsApp antes de agendar; a equipe orienta se a avaliação é o próximo passo certo e o que levar.",
+  },
+  {
+    q: "Vai doer?",
+    a: "A avaliação inicial não é treino — é escuta e leitura do corpo. O ritmo do que vem depois é ajustado ao que você aguenta, não o contrário.",
+  },
+  {
+    q: "Quanto custa a avaliação?",
+    a: "A avaliação inicial costuma ser gratuita. Confirme a condição atual ao chamar no WhatsApp.",
+  },
+  {
+    q: "Vocês aceitam convênio ou plano de saúde?",
+    a: "Formas de pagamento e convênio são combinados diretamente com a equipe — pergunte pelo WhatsApp antes de agendar.",
+  },
+  {
+    q: "O espaço tem fácil acesso? Elevador, escada, onde estacionar?",
+    a: "Se mobilidade for uma preocupação, pergunte pelo WhatsApp antes de vir — a equipe explica o acesso ao espaço.",
+  },
 ] as const;
 
 /* ---- "Vocabulary of the house" ----
@@ -170,10 +213,10 @@ export const proof = {
 } as const;
 
 export const galleryImages = [
-  { seed: "m1", w: 900, h: 1200, alt: "Detalhe de mãos em apoio durante um exercício de força" },
-  { seed: "m2", w: 1200, h: 800, alt: "Pessoa em amplitude de movimento sob luz lateral" },
-  { seed: "m3", w: 900, h: 1200, alt: "Articulação do joelho em transição de movimento" },
-  { seed: "m4", w: 1200, h: 900, alt: "Acompanhamento próximo entre profissional e aluno" },
-  { seed: "m5", w: 900, h: 1100, alt: "Pés e base de apoio em exercício de equilíbrio" },
-  { seed: "m6", w: 1200, h: 800, alt: "Equipamento de treino em contraluz no espaço da clínica" },
+  { seed: "m1", w: 900, h: 1200, alt: "Profissional de costas, com o logo da Conatus no uniforme, acompanha uma aluna no leg press." },
+  { seed: "m2", w: 1200, h: 900, alt: "Sala de musculação da Conatus em funcionamento, com alunos em treino acompanhados pela equipe." },
+  { seed: "m3", w: 900, h: 1200, alt: "Aluno treina em equipamento de musculação com orientação de um profissional da Conatus." },
+  { seed: "m4", w: 1200, h: 900, alt: "Equipe da Conatus acompanhando alunos 50+ na sala de treino." },
+  { seed: "m5", w: 900, h: 1200, alt: "Aluno no leg extension, com um profissional ao lado acompanhando a ficha de treino." },
+  { seed: "m6", w: 900, h: 1200, alt: "Aluna treina ombros em equipamento enquanto um profissional acompanha com a ficha de treino." },
 ] as const;

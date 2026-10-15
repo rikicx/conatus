@@ -22,8 +22,9 @@ export default function Signals() {
               seed="signals"
               w={1000}
               h={800}
-              alt="Detalhe de passada e apoio do pé durante avaliação de marcha"
+              alt="Aluna caminhando entre os equipamentos da sala de treino, com a equipe da Conatus por perto."
               className="h-full w-full"
+              imageClassName="object-[center_52%]"
               sizes="(max-width: 768px) 100vw, 40vw"
             />
           </div>

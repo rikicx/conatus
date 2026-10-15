@@ -1,6 +1,11 @@
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
-/** Conatus wordmark — the triangle-in-motion mark rebuilt as clean geometry. */
+/**
+ * Conatus wordmark — official logo (red sign-shaped triangle, flexing arm
+ * and the figure reaching out of the frame) + the name set beside it.
+ * Source: public/brand/logo-conatus.png (transparent background).
+ */
 export default function Wordmark({
   className,
   showText = true,
@@ -13,30 +18,15 @@ export default function Wordmark({
 }) {
   return (
     <span className={cn("inline-flex items-center", className)}>
-      <svg
-        width="22"
-        height="22"
-        viewBox="0 0 32 32"
-        fill="none"
-        aria-hidden
-        className="shrink-0 overflow-visible"
-      >
-        {/* downward triangle — the brand's core shape */}
-        <path
-          d="M4 6 L28 6 L16 27 Z"
-          stroke="currentColor"
-          strokeWidth="1.4"
-          strokeLinejoin="round"
-        />
-        {/* a figure mid-stride, abstracted to three strokes */}
-        <path
-          d="M13 11 L16 15 L14 20 M16 15 L20 17 M13 11 L10 13"
-          stroke="var(--color-oxblood)"
-          strokeWidth="1.6"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
+      <Image
+        src="/brand/logo-conatus.png"
+        alt=""
+        width={625}
+        height={625}
+        sizes="44px"
+        priority
+        className="h-10 w-10 shrink-0 object-contain md:h-11 md:w-11"
+      />
 
       {showText && (
         <span

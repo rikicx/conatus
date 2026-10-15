@@ -66,7 +66,7 @@ export default function MenuOverlay({
               seed="menu"
               w={800}
               h={1000}
-              alt="Aluno em movimento no espaço da Conatus"
+              alt="Profissional de costas, com o logo da Conatus no uniforme, acompanha uma aluna no leg press."
               className="h-full w-full"
               sizes="40vw"
             />

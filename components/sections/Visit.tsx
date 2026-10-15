@@ -44,13 +44,14 @@ export default function Visit() {
             href={contact.whatsappMessage}
             target="_blank"
             rel="noopener noreferrer"
-            className="group mt-10 inline-flex items-center gap-3 bg-ink-900 px-8 py-4 font-mono text-[0.7rem] uppercase tracking-[0.16em] text-paper transition-colors duration-300 hover:bg-oxblood"
+            className="group u-action mt-10 inline-flex items-center gap-3 bg-ink-900 px-8 py-4 text-paper transition-colors duration-300 hover:bg-oxblood"
           >
             Falar com a Conatus
             <span aria-hidden className="transition-transform duration-[400ms] group-hover:translate-x-1">
               ↗
             </span>
           </a>
+          <p className="mt-4 text-sm text-ink-500">Avaliação inicial gratuita.</p>
         </div>
 
         <div className="md:col-span-7">

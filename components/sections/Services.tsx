@@ -99,7 +99,8 @@ export default function Services() {
                   seed={s.seed}
                   w={900}
                   h={680}
-                  alt={`${s.name} — ${s.summary}`}
+                  alt={s.alt}
+                  imageClassName={s.position}
                   className="h-full w-full"
                   sizes="(max-width: 768px) 100vw, 33vw"
                 />
@@ -126,7 +127,7 @@ export default function Services() {
           </p>
           <Link
             href="/contato"
-            className="mt-5 inline-flex w-fit items-center gap-3 border-b border-ink-900 pb-1 text-[0.7rem] font-medium uppercase tracking-[0.16em] transition-colors hover:border-oxblood hover:text-oxblood"
+            className="u-action mt-5 inline-flex w-fit items-center gap-3 border-b border-ink-900 pb-1 transition-colors hover:border-oxblood hover:text-oxblood"
           >
             Começa pela avaliação →
           </Link>

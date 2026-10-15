@@ -54,7 +54,7 @@ export default function ContatoPage() {
           <div className="flex gap-6">
             <a
               href={`tel:+${contact.phoneRaw}`}
-              className="font-mono text-[0.7rem] uppercase tracking-[0.16em] text-clay hover:text-paper"
+              className="u-action text-clay hover:text-paper"
             >
               Ligar ↗
             </a>
@@ -62,7 +62,7 @@ export default function ContatoPage() {
               href={contact.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-[0.7rem] uppercase tracking-[0.16em] text-clay hover:text-paper"
+              className="u-action text-clay hover:text-paper"
             >
               {contact.instagramHandle} ↗
             </a>

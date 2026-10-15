@@ -1,10 +1,15 @@
 import { ImageResponse } from "next/og";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 
 export const alt = "Conatus — Tendência ao movimento";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export default function OG() {
+export default async function OG() {
+  const logo = await readFile(join(process.cwd(), "public/brand/logo-conatus.png"));
+  const logoSrc = `data:image/png;base64,${logo.toString("base64")}`;
+
   return new ImageResponse(
     (
       <div
@@ -30,14 +35,7 @@ export default function OG() {
             textTransform: "uppercase",
           }}
         >
-          <div
-            style={{
-              width: 34,
-              height: 34,
-              border: "2px solid #1e262d",
-              clipPath: "polygon(0 0, 100% 0, 50% 100%)",
-            }}
-          />
+          <img src={logoSrc} width={64} height={64} alt="" />
           Conatus
         </div>
 

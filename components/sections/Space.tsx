@@ -54,13 +54,13 @@ export default function Space() {
           <div className="grid grid-cols-12 gap-4 md:gap-6">
             <motion.figure
               style={reduce ? undefined : { y: bigY }}
-              className="media col-span-12 md:col-span-8"
+              className="media col-span-12 aspect-[16/9] md:col-span-8"
               data-cursor="media"
             >
               <motion.div style={reduce ? undefined : { scale }} className="h-full w-full">
                 <Image
                   src={placeholder("space-1", 1200, 900)}
-                  alt="Vista ampla do espaço de treino da Conatus com luz natural"
+                  alt="Vista real da sala de musculação da Conatus, com equipamentos pretos e piso amadeirado."
                   width={1200}
                   height={900}
                   sizes="(max-width: 768px) 100vw, 55vw"
@@ -71,12 +71,12 @@ export default function Space() {
 
             <motion.figure
               style={reduce ? undefined : { y: smallY }}
-              className="media col-span-7 md:col-span-4 md:mt-24"
+              className="media col-span-7 aspect-[4/5] md:col-span-4 md:mt-24"
               data-cursor="media"
             >
               <Image
                 src={placeholder("space-2", 700, 900)}
-                alt="Detalhe da sala de pilates"
+                alt="Sala de Pilates da Conatus com reformer, equipamentos de madeira e espelhos."
                 width={700}
                 height={900}
                 sizes="(max-width: 768px) 60vw, 28vw"
@@ -86,12 +86,12 @@ export default function Space() {
 
             <motion.figure
               style={reduce ? undefined : { y: bigY }}
-              className="media col-span-5 md:col-span-5 md:-mt-10"
+              className="media col-span-5 aspect-square md:col-span-5 md:-mt-10"
               data-cursor="media"
             >
               <Image
                 src={placeholder("space-3", 800, 1000)}
-                alt="Contraluz sobre equipamento de treino"
+                alt="Equipamentos de musculação e corredor central da Conatus."
                 width={800}
                 height={1000}
                 sizes="(max-width: 768px) 40vw, 24vw"

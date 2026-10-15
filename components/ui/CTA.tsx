@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 type Variant = "solid" | "line" | "ghost";
 
 const base =
-  "group/cta relative inline-flex items-center gap-3 font-mono text-[0.7rem] uppercase tracking-[0.16em] transition-colors duration-300";
+  "group/cta relative inline-flex items-center gap-3 u-action transition-colors duration-300";
 
 const styles: Record<Variant, string> = {
   solid:

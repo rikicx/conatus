@@ -44,8 +44,9 @@ export default function AbordagemPage() {
             seed="abordagem-hero"
             w={1600}
             h={900}
-            alt="Profissional conduzindo avaliação de movimento com um aluno"
+            alt="Equipe da Conatus acompanhando alunos 50+ na sala de treino."
             className="h-full w-full"
+            imageClassName="object-[center_75%]"
             sizes="100vw"
             priority
           />
@@ -91,7 +92,7 @@ export default function AbordagemPage() {
             href={contact.whatsappMessage}
             target="_blank"
             rel="noopener noreferrer"
-            className="group mt-10 inline-flex items-center gap-3 bg-ink-900 px-8 py-4 font-mono text-[0.7rem] uppercase tracking-[0.16em] text-paper transition-colors duration-300 hover:bg-oxblood"
+            className="group u-action mt-10 inline-flex items-center gap-3 bg-ink-900 px-8 py-4 text-paper transition-colors duration-300 hover:bg-oxblood"
           >
             Agendar avaliação
             <span aria-hidden className="transition-transform duration-[400ms] group-hover:translate-x-1">

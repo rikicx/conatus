@@ -17,7 +17,7 @@ export default function Footer() {
               href={contact.whatsappMessage}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-8 inline-flex items-center gap-3 font-mono text-[0.7rem] uppercase tracking-[0.16em] text-clay transition-colors hover:text-paper"
+              className="u-action mt-8 inline-flex items-center gap-3 text-clay transition-colors hover:text-paper"
             >
               Agendar uma avaliação
               <span aria-hidden>↗</span>

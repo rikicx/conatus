@@ -51,7 +51,7 @@ export default function Header() {
           </Link>
 
           <nav
-            className={`hidden items-center md:flex ${
+            className={`hidden items-center lg:flex ${
               condensed ? "gap-6" : "gap-8"
             }`}
             aria-label="Navegação"
@@ -60,7 +60,7 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`group relative text-[0.7rem] font-medium uppercase tracking-[0.16em] transition-colors ${
+                className={`group u-action relative whitespace-nowrap transition-colors ${
                   open ? "text-paper/80 hover:text-paper" : "text-ink-700 hover:text-ink-900"
                 }`}
               >
@@ -72,7 +72,7 @@ export default function Header() {
               href={contact.whatsappMessage}
               target="_blank"
               rel="noopener noreferrer"
-              className={`border text-[0.7rem] font-medium uppercase tracking-[0.16em] transition-colors duration-300 ${
+              className={`u-action whitespace-nowrap border transition-colors duration-300 ${
                 condensed ? "px-4 py-2" : "px-5 py-2.5"
               } ${
                 open
@@ -89,7 +89,7 @@ export default function Header() {
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-controls="menu-overlay"
-            className={`relative z-[80] flex h-10 w-10 items-center justify-center md:hidden ${
+            className={`relative z-[80] flex h-10 w-10 items-center justify-center lg:hidden ${
               open ? "text-paper" : "text-ink-900"
             }`}
           >

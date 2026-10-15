@@ -24,7 +24,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "Conatus — Fisioterapia, força e movimento para os 50+ | Vila Mariana, SP",
+    default: "Conatus — Musculação e Fisioterapia para os 50+ | Vila Mariana, SP",
     template: "%s · Conatus",
   },
   description: site.description,
@@ -64,6 +64,7 @@ const jsonLd = {
   url: site.url,
   telephone: `+${contact.phoneRaw}`,
   image: `${site.url}/opengraph-image`,
+  logo: `${site.url}/brand/logo-conatus.png`,
   priceRange: "$$",
   address: {
     "@type": "PostalAddress",

@@ -13,6 +13,7 @@ export default function PlacedImage({
   h,
   alt,
   className,
+  imageClassName,
   sizes = "(max-width: 768px) 100vw, 50vw",
   priority = false,
 }: {
@@ -21,6 +22,7 @@ export default function PlacedImage({
   h: number;
   alt: string;
   className?: string;
+  imageClassName?: string;
   sizes?: string;
   priority?: boolean;
 }) {
@@ -33,7 +35,7 @@ export default function PlacedImage({
         height={h}
         sizes={sizes}
         priority={priority}
-        className="h-full w-full object-cover"
+        className={cn("h-full w-full object-cover", imageClassName)}
       />
     </figure>
   );

@@ -8,6 +8,7 @@ import InMotion from "@/components/sections/InMotion";
 import Team from "@/components/sections/Team";
 import Space from "@/components/sections/Space";
 import Voices from "@/components/sections/Voices";
+import FAQ from "@/components/sections/FAQ";
 import Visit from "@/components/sections/Visit";
 
 export default function HomePage() {
@@ -26,6 +27,7 @@ export default function HomePage() {
       <Team />
       <Space />
       <Voices />
+      <FAQ />
       <Visit />
     </>
   );
