@@ -93,7 +93,7 @@ export default function Services() {
               </span>
             </div>
 
-            <div className="my-6 aspect-[4/3] w-full overflow-hidden md:my-0">
+            <div className="my-6 aspect-square w-full overflow-hidden md:my-0 md:aspect-[4/3]">
               <div className="svc-img h-full w-[112%] -translate-x-[6%]">
                 <PlacedImage
                   seed={s.seed}

@@ -100,7 +100,7 @@ export const services = [
     body: "Uma leitura completa de marcha, equilíbrio, força e amplitude. Define o plano e o que tratar primeiro, seja qual for o motivo que trouxe você até aqui.",
     seed: "avaliacao",
     alt: "Profissional da Conatus aferindo a pressão arterial de uma aluna antes do treino.",
-    position: "object-[center_27%]",
+    position: "object-[center_6%]",
   },
   {
     id: "fisioterapia",
@@ -110,7 +110,7 @@ export const services = [
     body: "Recuperação de lesões, cirurgias, dor e limitações de movimento — com atenção a quem quer voltar a andar, subir escadas e virar sem insegurança.",
     seed: "fisioterapia",
     alt: "Profissional da Conatus ajusta a postura de um aluno em equipamento de treino.",
-    position: "object-[center_39%]",
+    position: "object-[center_22%]",
   },
   {
     id: "musculacao",
@@ -120,7 +120,7 @@ export const services = [
     body: "Musculação especializada para a maturidade, acompanhada movimento a movimento por profissionais. Contra a sarcopenia, a favor da autonomia.",
     seed: "musculacao",
     alt: "Aluna treina no leg press enquanto um profissional de uniforme Conatus acompanha.",
-    position: "object-[center_43%]",
+    position: "object-[center_30%]",
   },
   {
     id: "pilates",
@@ -130,7 +130,7 @@ export const services = [
     body: "Turmas em dias fixos, como alternativa e complemento ao treino de força. Trabalha estabilidade, mobilidade e consciência de movimento.",
     seed: "pilates",
     alt: "Aluna em exercício de equilíbrio na cadeira de Pilates, com acompanhamento de uma profissional.",
-    position: "object-[center_62%]",
+    position: "object-[center_39%]",
   },
   {
     id: "nutricao",
