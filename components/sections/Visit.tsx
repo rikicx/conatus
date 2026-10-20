@@ -1,4 +1,5 @@
 import { contact } from "@/data/site";
+import { Free } from "@/components/ui/Free";
 
 export default function Visit() {
   return (
@@ -51,7 +52,9 @@ export default function Visit() {
               ↗
             </span>
           </a>
-          <p className="mt-4 text-sm text-ink-500">Avaliação inicial gratuita.</p>
+          <p className="mt-4 text-base font-medium text-ink-900">
+            Avaliação inicial <Free />.
+          </p>
         </div>
 
         <div className="md:col-span-7">

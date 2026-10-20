@@ -164,6 +164,25 @@ html.lenis body { height: auto; }
   font-weight: 600;
   hyphens: none;
 }
+/* descriptive (longer) home H1 — four lines instead of three short words */
+.d-hero-long {
+  font-size: clamp(2.1rem, min(5vw, 9.5svh), 4.5rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+/* "Avaliação gratuita" — highlighted every time it's mentioned */
+.u-free {
+  display: inline-block;
+  padding: 0.08em 0.4em;
+  border-radius: 2px;
+  background: var(--color-oxblood);
+  color: var(--color-paper);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  line-height: 1.25;
+}
 .d-1 { font-size: clamp(2.1rem, 6vw, 5rem); line-height: 1; letter-spacing: -0.04em; }
 .d-2 { font-size: clamp(1.85rem, 4.2vw, 3.25rem); line-height: 1.03; letter-spacing: -0.032em; }
 .d-3 { font-size: clamp(1.4rem, 2.8vw, 2.1rem); line-height: 1.12; letter-spacing: -0.02em; }

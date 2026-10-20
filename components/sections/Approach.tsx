@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import { approach } from "@/data/site";
+import { withFree } from "@/components/ui/Free";
+import CapturePlaceholder from "@/components/ui/CapturePlaceholder";
 
 export default function Approach() {
   const [active, setActive] = useState(0);
@@ -89,7 +91,7 @@ export default function Approach() {
         </div>
 
         {/* Scrolling panels */}
-        <div className="md:col-span-8">
+        <div className="min-w-0 md:col-span-8">
           {approach.map((step, i) => (
             <div
               key={step.n}
@@ -103,12 +105,33 @@ export default function Approach() {
                 <span className="u-label">{step.n}</span>
                 <span className="font-display text-lg text-oxblood">{step.title}</span>
               </p>
-              <p className="d-3 max-w-[20ch] font-display text-ink-900">
+              <p className="d-3 max-w-[24ch] font-display text-ink-900">
                 {step.lede}
+                {step.highlight && (
+                  <>
+                    {" "}
+                    <span className="text-oxblood">{step.highlight}</span>
+                  </>
+                )}
               </p>
               <p className="mt-6 max-w-[52ch] text-lg leading-relaxed text-ink-700">
-                {step.body}
+                {withFree(step.body)}
               </p>
+              {step.capture && (
+                <div
+                  className={`mt-8 grid gap-4 ${
+                    step.capture.length > 1 ? "grid-cols-2" : "max-w-sm"
+                  }`}
+                >
+                  {step.capture.map((c) => (
+                    <CapturePlaceholder
+                      key={c.title}
+                      {...c}
+                      className={c.kind === "video" ? "aspect-[4/5]" : "aspect-[3/4]"}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
           ))}
         </div>

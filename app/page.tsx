@@ -18,7 +18,7 @@ export default function HomePage() {
       <Manifesto />
       <Signals />
       <Pull
-        lines={["“Músculo é", "sinônimo de", "liberdade.”"]}
+        lines={["“Músculo é", "sinônimo de", "liberdade", "e autonomia.”"]}
         attribution="— O jeito que a Conatus diz"
       />
       <Approach />

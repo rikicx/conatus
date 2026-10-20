@@ -1,17 +1,26 @@
 "use client";
 
-import { useRef } from "react";
+import { useCallback, useRef, useState } from "react";
 import { useScroll, useTransform, motion, useReducedMotion } from "motion/react";
 import { useMediaQuery } from "@/lib/useMediaQuery";
 import Image from "next/image";
 import { placeholder } from "@/lib/utils";
 import { contact } from "@/data/site";
+import Lightbox, { ZoomHint } from "@/components/ui/Lightbox";
+
+const spaceImages = [
+  { seed: "space-1", w: 1200, h: 900, alt: "Vista real da sala de musculação da Conatus, com equipamentos pretos e piso amadeirado.", sizes: "(max-width: 768px) 100vw, 55vw" },
+  { seed: "space-2", w: 700, h: 900, alt: "Sala de Pilates da Conatus com reformer, equipamentos de madeira e espelhos.", sizes: "(max-width: 768px) 60vw, 28vw" },
+  { seed: "space-3", w: 800, h: 1000, alt: "Equipamentos de musculação e corredor central da Conatus.", sizes: "(max-width: 768px) 40vw, 24vw" },
+].map((img) => ({ ...img, src: placeholder(img.seed, img.w, img.h) }));
 
 export default function Space() {
   const ref = useRef<HTMLElement>(null);
   const reduce = useReducedMotion();
   // parallax only from md up — on phones it costs frames for little effect
   const wide = useMediaQuery("(min-width: 768px)");
+  const [zoom, setZoom] = useState<number | null>(null);
+  const closeZoom = useCallback(() => setZoom(null), []);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
@@ -61,14 +70,22 @@ export default function Space() {
               data-cursor="media"
             >
               <motion.div style={reduce || !wide ? undefined : { scale }} className="h-full w-full">
-                <Image
-                  src={placeholder("space-1", 1200, 900)}
-                  alt="Vista real da sala de musculação da Conatus, com equipamentos pretos e piso amadeirado."
-                  width={1200}
-                  height={900}
-                  sizes="(max-width: 768px) 100vw, 55vw"
-                  className="h-full w-full object-cover"
-                />
+                <button
+                  type="button"
+                  onClick={() => setZoom(0)}
+                  aria-label={`Ampliar foto: ${spaceImages[0].alt}`}
+                  className="relative block h-full w-full cursor-zoom-in"
+                >
+                  <Image
+                    src={spaceImages[0].src}
+                    alt=""
+                    width={spaceImages[0].w}
+                    height={spaceImages[0].h}
+                    sizes={spaceImages[0].sizes}
+                    className="h-full w-full object-cover"
+                  />
+                  <ZoomHint />
+                </button>
               </motion.div>
             </motion.figure>
 
@@ -77,14 +94,22 @@ export default function Space() {
               className="media col-span-7 aspect-[4/5] md:col-span-4 md:mt-24"
               data-cursor="media"
             >
-              <Image
-                src={placeholder("space-2", 700, 900)}
-                alt="Sala de Pilates da Conatus com reformer, equipamentos de madeira e espelhos."
-                width={700}
-                height={900}
-                sizes="(max-width: 768px) 60vw, 28vw"
-                className="h-full w-full object-cover"
-              />
+              <button
+                type="button"
+                onClick={() => setZoom(1)}
+                aria-label={`Ampliar foto: ${spaceImages[1].alt}`}
+                className="relative block h-full w-full cursor-zoom-in"
+              >
+                <Image
+                  src={spaceImages[1].src}
+                  alt=""
+                  width={spaceImages[1].w}
+                  height={spaceImages[1].h}
+                  sizes={spaceImages[1].sizes}
+                  className="h-full w-full object-cover"
+                />
+                <ZoomHint />
+              </button>
             </motion.figure>
 
             <motion.figure
@@ -92,18 +117,28 @@ export default function Space() {
               className="media col-span-5 aspect-square md:col-span-5 md:-mt-10"
               data-cursor="media"
             >
-              <Image
-                src={placeholder("space-3", 800, 1000)}
-                alt="Equipamentos de musculação e corredor central da Conatus."
-                width={800}
-                height={1000}
-                sizes="(max-width: 768px) 40vw, 24vw"
-                className="h-full w-full object-cover"
-              />
+              <button
+                type="button"
+                onClick={() => setZoom(2)}
+                aria-label={`Ampliar foto: ${spaceImages[2].alt}`}
+                className="relative block h-full w-full cursor-zoom-in"
+              >
+                <Image
+                  src={spaceImages[2].src}
+                  alt=""
+                  width={spaceImages[2].w}
+                  height={spaceImages[2].h}
+                  sizes={spaceImages[2].sizes}
+                  className="h-full w-full object-cover"
+                />
+                <ZoomHint />
+              </button>
             </motion.figure>
           </div>
         </div>
       </div>
+
+      <Lightbox images={spaceImages} index={zoom} onChange={setZoom} onClose={closeZoom} />
     </section>
   );
 }

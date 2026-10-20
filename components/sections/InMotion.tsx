@@ -1,11 +1,19 @@
 "use client";
 
-import { useRef } from "react";
+import { useCallback, useRef, useState } from "react";
 import { useScroll, useTransform, motion, useReducedMotion } from "motion/react";
 import { placeholder } from "@/lib/utils";
 import { galleryImages } from "@/data/site";
 import Image from "next/image";
 import { useMediaQuery } from "@/lib/useMediaQuery";
+import Lightbox, { ZoomHint } from "@/components/ui/Lightbox";
+
+const zoomImages = galleryImages.map((img) => ({
+  src: placeholder(img.seed, img.w, img.h),
+  alt: img.alt,
+  w: img.w,
+  h: img.h,
+}));
 
 export default function InMotion() {
   const ref = useRef<HTMLElement>(null);
@@ -13,6 +21,8 @@ export default function InMotion() {
   // scroll-linked motion is desktop-only: on phones the title would run off
   // the screen and the parallax lanes cost frames for little effect
   const wide = useMediaQuery("(min-width: 768px)");
+  const [zoom, setZoom] = useState<number | null>(null);
+  const closeZoom = useCallback(() => setZoom(null), []);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
@@ -59,14 +69,22 @@ export default function InMotion() {
               className={`media ${span} ${i % 2 ? "col-span-1" : "col-span-1"}`}
               data-cursor="media"
             >
-              <Image
-                src={placeholder(img.seed, img.w, img.h)}
-                alt={img.alt}
-                width={img.w}
-                height={img.h}
-                sizes="(max-width: 768px) 50vw, 33vw"
-                className="h-full w-full object-cover"
-              />
+              <button
+                type="button"
+                onClick={() => setZoom(i)}
+                aria-label={`Ampliar foto: ${img.alt}`}
+                className="block h-full w-full cursor-zoom-in"
+              >
+                <Image
+                  src={zoomImages[i].src}
+                  alt=""
+                  width={img.w}
+                  height={img.h}
+                  sizes="(max-width: 768px) 50vw, 33vw"
+                  className="h-full w-full object-cover"
+                />
+                <ZoomHint />
+              </button>
               <figcaption className="absolute bottom-3 left-3 z-[2] font-mono text-[0.6rem] uppercase tracking-[0.16em] text-paper/70">
                 {String(i + 1).padStart(2, "0")}
               </figcaption>
@@ -77,10 +95,13 @@ export default function InMotion() {
 
       <div className="u-container mt-14 md:mt-20">
         <p className="max-w-[40ch] text-lg text-paper/70">
-          Amplitude, apoio, transferência de peso, controle na volta. É isso que
-          se observa numa sessão — e é isso que a progressão registra.
+          Amplitude, apoio, transferência de peso, controle na volta. Esses são
+          alguns dos fatores observados em uma sessão — e é isso que a
+          progressão registra.
         </p>
       </div>
+
+      <Lightbox images={zoomImages} index={zoom} onChange={setZoom} onClose={closeZoom} />
     </section>
   );
 }

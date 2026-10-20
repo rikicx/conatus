@@ -6,6 +6,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { services } from "@/data/site";
 import PlacedImage from "@/components/ui/PlacedImage";
+import { withFree } from "@/components/ui/Free";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -112,7 +113,7 @@ export default function Services() {
                 {s.name}
               </h3>
               <p className="mt-1 text-[0.8125rem] font-medium uppercase tracking-[0.14em] text-oxblood">
-                {s.summary}
+                {withFree(s.summary)}
               </p>
               <p className="mt-4 max-w-[42ch] text-base leading-relaxed md:text-sm text-ink-700">
                 {s.body}

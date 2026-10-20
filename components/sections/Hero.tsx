@@ -1,10 +1,10 @@
 "use client";
 
 import { useRef } from "react";
-import Link from "next/link";
 import { useScroll, useTransform, motion, useReducedMotion } from "motion/react";
 import HeroVideo from "@/components/motion/HeroVideo";
 import { contact } from "@/data/site";
+import { Free } from "@/components/ui/Free";
 import { useMediaQuery } from "@/lib/useMediaQuery";
 
 export default function Hero() {
@@ -35,52 +35,48 @@ export default function Hero() {
         >
           <p className="mb-5 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.1em] text-ink-700 md:text-base">
             <span className="inline-block h-px w-10 shrink-0 bg-oxblood" />
-            Musculação e fisioterapia para os 50+
+            Clínica Conatus
           </p>
 
-          <h1 className="d-hero text-ink-900">
-            <span className="block overflow-hidden">
-              <span className="block animate-[heroline_0.9s_cubic-bezier(0.16,1,0.3,1)_forwards]">
-                Todo corpo
+          <h1 className="d-hero d-hero-long text-ink-900">
+            {["Fisioterapia e", "fortalecimento", "especializado para"].map((line, i) => (
+              <span key={line} className="block overflow-hidden">
+                <span
+                  className="block animate-[heroline_0.9s_cubic-bezier(0.16,1,0.3,1)_both]"
+                  style={{ animationDelay: `${i * 0.1}s` }}
+                >
+                  {line}
+                </span>
               </span>
-            </span>
+            ))}
             <span className="block overflow-hidden">
-              <span className="block animate-[heroline_0.9s_cubic-bezier(0.16,1,0.3,1)_0.1s_both]">
-                tende a
-              </span>
-            </span>
-            <span className="block overflow-hidden">
-              <span className="block animate-[heroline_0.9s_cubic-bezier(0.16,1,0.3,1)_0.2s_both] text-oxblood">
-                continuar.
+              <span className="block animate-[heroline_0.9s_cubic-bezier(0.16,1,0.3,1)_0.3s_both] text-oxblood">
+                terceira idade.
               </span>
             </span>
           </h1>
 
           <p className="mt-5 max-w-[46ch] lg:mt-7 text-lg leading-relaxed text-ink-700">
-            Musculação orientada e fisioterapia especializada para quem
-            passou dos 50 — devolvendo força, amplitude e confiança de
-            movimento, na Vila Mariana.
+            Musculação especializada e fisioterapia para quem passou dos 50 —
+            devolvendo força, amplitude, confiança e autonomia de movimento, na
+            Vila Mariana.
           </p>
 
-          <div className="mt-7 flex flex-wrap lg:mt-9 items-center gap-x-8 gap-y-4">
+          <div className="mt-7 lg:mt-9">
             <a
               href={contact.whatsappMessage}
               target="_blank"
               rel="noopener noreferrer"
               className="group u-action inline-flex items-center gap-3 bg-ink-900 px-7 py-4 text-paper transition-colors duration-300 hover:bg-oxblood"
             >
-              Agendar avaliação
+              Clique aqui para agendar avaliação
               <span aria-hidden className="transition-transform duration-[400ms] group-hover:translate-x-1">→</span>
             </a>
-            <Link
-              href="/#o-que-fazemos"
-              className="u-tap u-action text-ink-700 underline decoration-ink-300 underline-offset-8 transition-colors hover:text-oxblood hover:decoration-oxblood"
-            >
-              O que fazemos
-            </Link>
           </div>
 
-          <p className="mt-5 text-sm text-ink-500">Avaliação inicial gratuita.</p>
+          <p className="mt-5 text-base font-medium text-ink-900">
+            Avaliação inicial <Free />.
+          </p>
         </motion.div>
 
         {/* Media — half and half. The video is the hero's background: a full-bleed band

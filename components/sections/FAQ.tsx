@@ -1,4 +1,5 @@
 import { faq, contact } from "@/data/site";
+import { withFree } from "@/components/ui/Free";
 
 /**
  * Native <details>/<summary> — works without JS, fully keyboard and
@@ -55,7 +56,7 @@ export default function FAQ() {
                 </span>
               </summary>
               <p className="max-w-[56ch] pb-6 pl-0 text-base leading-relaxed text-ink-700 md:pl-[3.25rem]">
-                {item.a}
+                {withFree(item.a)}
               </p>
             </details>
           ))}

@@ -50,13 +50,13 @@ dos canais públicos da Conatus (Instagram @clinica.conatus, perfil do Google) e
 - Endereço: R. Cel. Diogo, 484 — Jardim da Glória / Vila Mariana, SP, 01545-000
 - WhatsApp: (11) 98962-2924 · Instagram: @clinica.conatus
 - Serviços: fisioterapia, pilates terapêutico, musculação 50+, nutrição, avaliação inicial
-- Google: nota 5,0 · 26 avaliações (exibido como está, datado)
-- Abertura neste endereço: novembro de 2025
+- Google: "Nota máxima no Google" (só isso, sem data nem contagem)
+- Em atividade desde 2020 · abertura neste endereço: novembro de 2025
 
 Narrativa, headlines, microcopy e a estrutura das seções são autorais.
 **Não** há profissionais nomeados, CREFITO, certificações, convênios, preços nem
-depoimentos inventados. A seção "Vozes" usa só a nota do Google + o vocabulário que a
-própria clínica repete (enquadrado como a linguagem da casa, não como depoimento).
+depoimentos inventados. A seção "Vozes" mostra somente a nota máxima do Google (com link para o perfil) — sem data,
+sem contagem de avaliações e sem texto adicional.
 
 ### Fotografia — TROCAR ANTES DO LANÇAMENTO
 

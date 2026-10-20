@@ -56,19 +56,50 @@ export const nav = [
 ] as const;
 
 /* ---- The method: patterns observed across Conatus's own content ----
-   (avaliar → entender → mover → fortalecer → acompanhar) */
-export const approach = [
+   (avaliar → entender → mover → fortalecer → acompanhar)
+   `capture` = material still to be shot; rendered as a placeholder that
+   doubles as the brief. Swap for the real photo/video once it exists. */
+type ApproachStep = {
+  n: string;
+  title: string;
+  lede: string;
+  /** rendered in the accent colour right after the lede */
+  highlight?: string;
+  body: string;
+  capture?: { kind: "foto" | "video"; title: string; brief: string }[];
+};
+
+export const approach: readonly ApproachStep[] = [
   {
     n: "01",
     title: "Avaliação",
-    lede: "Antes de qualquer exercício, uma leitura do corpo.",
-    body: "Marcha, equilíbrio, força, amplitude, histórico. A avaliação inicial define o ponto de partida — e o que o movimento precisa devolver primeiro.",
+    lede: "Não importa o tamanho da sua limitação.",
+    body: "Nós trabalharemos a solução de forma individualizada e adaptada. Marcha, equilíbrio, força, amplitude, histórico: a avaliação inicial define o ponto de partida — e é gratuita.",
+    capture: [
+      {
+        kind: "foto",
+        title: "Com andador",
+        brief: "Aluno(a) caminhando com apoio do andador. Corpo inteiro, de lado, na sala de treino. Com autorização de uso de imagem.",
+      },
+      {
+        kind: "foto",
+        title: "Sem andador",
+        brief: "A mesma pessoa, mesmo enquadramento e local, caminhando sem apoio — depois da evolução.",
+      },
+    ],
   },
   {
     n: "02",
     title: "Leitura",
     lede: "O corpo dá sinais muito antes de uma queda.",
     body: "Passos mais curtos, insegurança ao mudar de direção, fraqueza nas pernas. Cada sinal é informação. Entender vem antes de tratar.",
+    capture: [
+      {
+        kind: "video",
+        title: "Sra. Mitiko caminhando devagar",
+        brief: "Plano aberto, câmera parada na altura do quadril, celular na vertical. 10 a 20 segundos sem cortes, no ritmo natural dela. Com autorização de uso de imagem.",
+      },
+    ],
   },
   {
     n: "03",
@@ -79,16 +110,17 @@ export const approach = [
   {
     n: "04",
     title: "Força",
-    lede: "Músculo é o que sustenta a independência.",
-    body: "Depois dos 60, a perda de massa muscular acelera. O treino de força reconstrói o que o tempo tira — e com a nutrição andando junto, o corpo tem com o que se refazer.",
+    lede: "Músculo é o que sustenta a",
+    highlight: "independência, autonomia e saúde.",
+    body: "Depois dos 50, a perda de massa muscular acelera. O treino de força reconstrói o que o tempo tira — e com a nutrição andando junto, o corpo tem com o que se refazer.",
   },
   {
     n: "05",
     title: "Acompanhamento",
-    lede: "Progressão medida, não prometida.",
-    body: "Reavaliações periódicas mostram o que mudou. A carga sobe quando o corpo está pronto. O objetivo não é o treino — é seguir fazendo o que você ama, com segurança.",
+    lede: "Progressão acompanhada, onde parte da solução é o empenho de cada cliente.",
+    body: "Reavaliações periódicas mostram o que mudou. A carga sobe quando o corpo está pronto. O objetivo não é o desempenho — é a busca da saúde, da autonomia e de uma qualidade de vida sem dor.",
   },
-] as const;
+];
 
 /* ---- Services: all publicly confirmed by Conatus ---- */
 export const services = [
@@ -158,14 +190,19 @@ export const signals = [
 
 /* ---- Perguntas antes de ligar ----
    Answers to real objections. Where Conatus's own channels confirm a fact
-   (avaliação gratuita), it's stated plainly. Where the answer depends on
+   (avaliação gratuita, confirmed by the clinic in Oct/2026; clients up to
+   96 years old — the clinic's own statement), it's stated plainly. Where the answer depends on
    the individual case or isn't publicly confirmed (convênio, acesso ao
    espaço, casos pós-cirúrgicos específicos), the answer says so honestly
    and routes to WhatsApp — never invents a yes or a no. */
 export const faq = [
   {
     q: "Nunca fiz fisioterapia nem treino. Serve pra mim?",
-    a: "Serve — é justamente pra isso que existe a avaliação inicial. Ela lê onde o seu corpo está agora e define o que faz sentido a partir daí, sem exigir histórico ou experiência prévia.",
+    a: "Serve — é justamente pra isso que existe a avaliação inicial. Ela lê onde o seu corpo está agora e define o que faz sentido a partir daí, sem exigir histórico ou experiência prévia. Nunca é tarde.",
+  },
+  {
+    q: "Já tenho mais de 80 e nunca fiz atividade física. É tarde pra começar?",
+    a: "Nunca é tarde. Temos clientes de até 96 anos que eram sedentários e hoje já têm progressos significativos.",
   },
   {
     q: "Tenho uma cirurgia recente, prótese ou uma lesão. Vocês atendem esse caso?",
@@ -177,7 +214,7 @@ export const faq = [
   },
   {
     q: "Quanto custa a avaliação?",
-    a: "A avaliação inicial costuma ser gratuita. Confirme a condição atual ao chamar no WhatsApp.",
+    a: "A avaliação inicial é gratuita. É só chamar no WhatsApp para agendar.",
   },
   {
     q: "Vocês aceitam convênio ou plano de saúde?",
@@ -189,27 +226,11 @@ export const faq = [
   },
 ] as const;
 
-/* ---- "Vocabulary of the house" ----
-   These are words Conatus repeats across its own public communication —
-   presented as the clinic's language, NOT as customer quotes. */
-export const vocabulary = [
-  "autonomia",
-  "movimento",
-  "acolhimento",
-  "longevidade",
-  "equilíbrio",
-  "força",
-  "independência",
-  "sem dor",
-] as const;
-
 /* ---- Verifiable social proof ---- */
 export const proof = {
   ratingValue: 5.0,
-  ratingCount: 26,
   ratingSource: "Google",
   ratingUrl: contact.mapsUrl,
-  asOf: "setembro de 2026",
 } as const;
 
 export const galleryImages = [

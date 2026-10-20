@@ -82,11 +82,7 @@ const jsonLd = {
   areaServed: "São Paulo",
   sameAs: [contact.instagram],
   medicalSpecialty: "PhysicalTherapy",
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "5.0",
-    reviewCount: "26",
-  },
+  foundingDate: "2020",
   makesOffer: [
     "Avaliação fisioterapêutica",
     "Fisioterapia especializada",

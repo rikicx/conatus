@@ -31,8 +31,7 @@ export default function Team() {
           </p>
           <p className="mt-4 max-w-[44ch] text-ink-500">
             Um ambiente que quem passa por lá costuma descrever, com as próprias
-            palavras, como acolhedor e familiar. A clínica abriu as portas neste
-            endereço no fim de 2025.
+            palavras, como acolhedor e familiar. Desde 2020.
           </p>
 
           <ul className="mt-8 flex flex-wrap gap-2">
