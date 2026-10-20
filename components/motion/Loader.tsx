@@ -59,7 +59,7 @@ export default function Loader() {
   return (
     <div
       aria-hidden
-      className="fixed inset-0 z-[10001] flex items-center max-md:hidden justify-center bg-paper transition-[clip-path] duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
+      className="loader-failsafe fixed inset-0 z-[10001] flex items-center max-md:hidden justify-center bg-paper transition-[clip-path] duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
       style={{ clipPath: phase === "out" ? "inset(0 0 100% 0)" : "inset(0 0 0 0)" }}
     >
       <div className="relative w-[min(78vw,720px)]">
@@ -91,6 +91,10 @@ export default function Loader() {
           55%  { d: path("M0 60 Q 180 6 360 60 T 720 60"); }
           100% { stroke-dashoffset: 0; d: path("M0 60 Q 180 60 360 60 T 720 60"); }
         }
+        /* failsafe: if scripts never run (blocked, failed), the loader still
+           gets out of the way instead of covering the site forever */
+        .loader-failsafe { animation: loaderFailsafe 0s linear 3s forwards; }
+        @keyframes loaderFailsafe { to { visibility: hidden; pointer-events: none; } }
         @keyframes loaderWord {
           0%   { opacity: 0; letter-spacing: 0.5em; filter: blur(6px); clip-path: inset(0 0 100% 0); }
           60%  { opacity: 1; }
