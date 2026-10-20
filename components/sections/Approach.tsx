@@ -107,13 +107,8 @@ export default function Approach() {
               </p>
               <p className="d-3 max-w-[24ch] font-display text-ink-900">
                 {step.lede}
-                {step.highlight && (
-                  <>
-                    {" "}
-                    <span className="text-oxblood">{step.highlight}</span>
-                  </>
-                )}
               </p>
+              {step.highlight && <HighlightWords words={step.highlight} />}
               <p className="mt-6 max-w-[52ch] text-lg leading-relaxed text-ink-700">
                 {withFree(step.body)}
               </p>
@@ -137,5 +132,49 @@ export default function Approach() {
         </div>
       </div>
     </section>
+  );
+}
+
+/** "independência, autonomia e saúde." — one line on desktop, words rise in one after another. */
+function HighlightWords({ words }: { words: readonly string[] }) {
+  const ref = useRef<HTMLParagraphElement>(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.2, rootMargin: "0px 0px -10% 0px" }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  return (
+    <p
+      ref={ref}
+      className={`hl-words mt-3 flex flex-wrap items-baseline gap-x-[0.3em] font-display text-[clamp(1.6rem,2.6vw,2.6rem)] font-bold leading-[1.1] tracking-[-0.03em] text-oxblood lg:flex-nowrap lg:whitespace-nowrap ${
+        inView ? "is-in" : ""
+      }`}
+    >
+      {words.map((w, i) => {
+        const last = i === words.length - 1;
+        return (
+          <span key={w} className="inline-block overflow-hidden pb-[0.08em]">
+            <span className="inline-block" style={{ transitionDelay: `${150 + i * 280}ms` }}>
+              {last && words.length > 1 && <span className="font-normal text-ink-500">e </span>}
+              {w}
+              <span className="font-normal text-ink-500">{last ? "." : i < words.length - 2 ? "," : ""}</span>
+            </span>
+          </span>
+        );
+      })}
+    </p>
   );
 }

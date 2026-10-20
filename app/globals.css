@@ -171,6 +171,17 @@ html.lenis body { height: auto; }
   letter-spacing: -0.04em;
 }
 
+/* Approach step 04 — key words rise in one after another (delay set inline) */
+.hl-words > span > span {
+  transform: translateY(105%);
+  opacity: 0;
+  transition: transform 0.7s var(--ease-settle), opacity 0.7s var(--ease-settle);
+}
+.hl-words.is-in > span > span { transform: none; opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .hl-words > span > span { transform: none; opacity: 1; transition: none; }
+}
+
 /* "Avaliação gratuita" — highlighted every time it's mentioned */
 .u-free {
   display: inline-block;

@@ -63,8 +63,8 @@ type ApproachStep = {
   n: string;
   title: string;
   lede: string;
-  /** rendered in the accent colour right after the lede */
-  highlight?: string;
+  /** key words shown on their own line after the lede, animated in one by one */
+  highlight?: string[];
   body: string;
   capture?: { kind: "foto" | "video"; title: string; brief: string }[];
 };
@@ -106,19 +106,40 @@ export const approach: readonly ApproachStep[] = [
     title: "Movimento",
     lede: "Fisioterapia e treino na mesma direção.",
     body: "O plano combina reabilitação e exercício orientado. Nada genérico: cada série é ajustada à sua condição e aos seus limites, movimento a movimento.",
+    capture: [
+      {
+        kind: "foto",
+        title: "Movimento orientado",
+        brief: "Profissional ajustando o movimento de um aluno(a) 50+ em equipamento — mão do profissional guiando, rosto do aluno visível. Com autorização de uso de imagem.",
+      },
+    ],
   },
   {
     n: "04",
     title: "Força",
     lede: "Músculo é o que sustenta a",
-    highlight: "independência, autonomia e saúde.",
+    highlight: ["independência", "autonomia", "saúde"],
     body: "Depois dos 50, a perda de massa muscular acelera. O treino de força reconstrói o que o tempo tira — e com a nutrição andando junto, o corpo tem com o que se refazer.",
+    capture: [
+      {
+        kind: "foto",
+        title: "Treino de força",
+        brief: "Aluno(a) 50+ fazendo força de verdade (leg press, halter ou cabo), com o profissional ao lado. Esforço visível, corpo inteiro no quadro. Com autorização de uso de imagem.",
+      },
+    ],
   },
   {
     n: "05",
     title: "Acompanhamento",
     lede: "Progressão acompanhada, onde parte da solução é o empenho de cada cliente.",
     body: "Reavaliações periódicas mostram o que mudou. A carga sobe quando o corpo está pronto. O objetivo não é o desempenho — é a busca da saúde, da autonomia e de uma qualidade de vida sem dor.",
+    capture: [
+      {
+        kind: "foto",
+        title: "Reavaliação",
+        brief: "Profissional e aluno(a) revisando juntos a ficha ou um teste de reavaliação — o momento em que a progressão é registrada. Com autorização de uso de imagem.",
+      },
+    ],
   },
 ];
 
@@ -197,12 +218,12 @@ export const signals = [
    and routes to WhatsApp — never invents a yes or a no. */
 export const faq = [
   {
-    q: "Nunca fiz fisioterapia nem treino. Serve pra mim?",
-    a: "Serve — é justamente pra isso que existe a avaliação inicial. Ela lê onde o seu corpo está agora e define o que faz sentido a partir daí, sem exigir histórico ou experiência prévia. Nunca é tarde.",
-  },
-  {
     q: "Já tenho mais de 80 e nunca fiz atividade física. É tarde pra começar?",
     a: "Nunca é tarde. Temos clientes de até 96 anos que eram sedentários e hoje já têm progressos significativos.",
+  },
+  {
+    q: "Nunca fiz fisioterapia nem treino. Serve pra mim?",
+    a: "Serve — é justamente pra isso que existe a avaliação inicial. Ela lê onde o seu corpo está agora e define o que faz sentido a partir daí, sem exigir histórico ou experiência prévia. Nunca é tarde.",
   },
   {
     q: "Tenho uma cirurgia recente, prótese ou uma lesão. Vocês atendem esse caso?",
