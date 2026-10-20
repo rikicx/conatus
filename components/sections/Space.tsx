@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { useScroll, useTransform, motion, useReducedMotion } from "motion/react";
+import { useMediaQuery } from "@/lib/useMediaQuery";
 import Image from "next/image";
 import { placeholder } from "@/lib/utils";
 import { contact } from "@/data/site";
@@ -9,6 +10,8 @@ import { contact } from "@/data/site";
 export default function Space() {
   const ref = useRef<HTMLElement>(null);
   const reduce = useReducedMotion();
+  // parallax only from md up — on phones it costs frames for little effect
+  const wide = useMediaQuery("(min-width: 768px)");
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
@@ -53,11 +56,11 @@ export default function Space() {
         <div className="md:col-span-8">
           <div className="grid grid-cols-12 gap-4 md:gap-6">
             <motion.figure
-              style={reduce ? undefined : { y: bigY }}
+              style={reduce || !wide ? undefined : { y: bigY }}
               className="media col-span-12 aspect-[16/9] md:col-span-8"
               data-cursor="media"
             >
-              <motion.div style={reduce ? undefined : { scale }} className="h-full w-full">
+              <motion.div style={reduce || !wide ? undefined : { scale }} className="h-full w-full">
                 <Image
                   src={placeholder("space-1", 1200, 900)}
                   alt="Vista real da sala de musculação da Conatus, com equipamentos pretos e piso amadeirado."
@@ -70,7 +73,7 @@ export default function Space() {
             </motion.figure>
 
             <motion.figure
-              style={reduce ? undefined : { y: smallY }}
+              style={reduce || !wide ? undefined : { y: smallY }}
               className="media col-span-7 aspect-[4/5] md:col-span-4 md:mt-24"
               data-cursor="media"
             >
@@ -85,7 +88,7 @@ export default function Space() {
             </motion.figure>
 
             <motion.figure
-              style={reduce ? undefined : { y: bigY }}
+              style={reduce || !wide ? undefined : { y: bigY }}
               className="media col-span-5 aspect-square md:col-span-5 md:-mt-10"
               data-cursor="media"
             >

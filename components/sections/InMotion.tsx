@@ -10,7 +10,8 @@ import { useMediaQuery } from "@/lib/useMediaQuery";
 export default function InMotion() {
   const ref = useRef<HTMLElement>(null);
   const reduce = useReducedMotion();
-  // the sideways drift needs room: on phones the title would run off the screen
+  // scroll-linked motion is desktop-only: on phones the title would run off
+  // the screen and the parallax lanes cost frames for little effect
   const wide = useMediaQuery("(min-width: 768px)");
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -54,7 +55,7 @@ export default function InMotion() {
           return (
             <motion.figure
               key={img.seed}
-              style={reduce ? undefined : { y: lanes[i] }}
+              style={reduce || !wide ? undefined : { y: lanes[i] }}
               className={`media ${span} ${i % 2 ? "col-span-1" : "col-span-1"}`}
               data-cursor="media"
             >

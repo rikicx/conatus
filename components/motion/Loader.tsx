@@ -8,7 +8,8 @@ type Phase = "in" | "out" | "done";
  * Loader as identity, not spinner.
  * A flat line gains amplitude (a gesture of movement), then the
  * word CONATUS resolves out of it. ~1.3s, shown once per session,
- * skipped for reduced-motion. Server and first client render always
+ * skipped for reduced-motion and on phones (hidden by CSS before
+ * hydration too), where it would only delay the first screen. Server and first client render always
  * agree ("in"); the effect decides what happens next.
  */
 export default function Loader() {
@@ -28,7 +29,9 @@ export default function Loader() {
       /* no matchMedia */
     }
 
-    if (seen || reduce) {
+    const phone = window.matchMedia("(max-width: 767px)").matches;
+
+    if (seen || reduce || phone) {
       const id = requestAnimationFrame(() => setPhase("done"));
       return () => cancelAnimationFrame(id);
     }
@@ -56,7 +59,7 @@ export default function Loader() {
   return (
     <div
       aria-hidden
-      className="fixed inset-0 z-[10001] flex items-center justify-center bg-paper transition-[clip-path] duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
+      className="fixed inset-0 z-[10001] flex items-center max-md:hidden justify-center bg-paper transition-[clip-path] duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
       style={{ clipPath: phase === "out" ? "inset(0 0 100% 0)" : "inset(0 0 0 0)" }}
     >
       <div className="relative w-[min(78vw,720px)]">

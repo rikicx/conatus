@@ -27,13 +27,14 @@ export default function MenuOverlay({
     <div
       id="menu-overlay"
       aria-hidden={!open}
-      className={`fixed inset-0 z-[60] bg-ink-900 text-paper transition-[clip-path] duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none ${
+      data-lenis-prevent
+      className={`fixed inset-0 z-[60] overflow-y-auto overscroll-contain bg-ink-900 text-paper transition-[clip-path] duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none ${
         open
           ? "[clip-path:inset(0_0_0_0)] pointer-events-auto"
           : "[clip-path:inset(0_0_100%_0)] pointer-events-none"
       }`}
     >
-      <div className="u-container flex h-full flex-col justify-between pt-24 pb-10 md:grid md:grid-cols-12 md:items-center md:gap-10">
+      <div className="u-container flex min-h-full flex-col justify-between pt-24 pb-[calc(2.5rem+env(safe-area-inset-bottom))] md:grid md:grid-cols-12 md:items-center md:gap-10">
         <nav className="md:col-span-7" aria-label="Navegação principal">
           <ul className="space-y-1">
             {nav.map((item, i) => (
