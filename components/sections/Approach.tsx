@@ -29,18 +29,19 @@ export default function Approach() {
       className="u-container py-20 md:py-28"
       aria-labelledby="approach-h"
     >
-      <div className="mb-16 flex flex-wrap items-end justify-between gap-6">
+      <div className="mb-8 flex flex-wrap items-end justify-between gap-6 md:mb-16">
         <h2 id="approach-h" className="d-2 max-w-[14ch] font-display">
           A abordagem, <span className="text-oxblood">em cinco tempos.</span>
         </h2>
-        <p className="u-label max-w-[24ch] text-right">
+        <p className="u-label hidden max-w-[24ch] text-right md:block">
           Avaliar · Ler · Mover · Fortalecer · Acompanhar
         </p>
       </div>
 
-      <div className="grid gap-12 md:grid-cols-12">
-        {/* Sticky index */}
-        <div className="md:col-span-4">
+      <div className="grid md:grid-cols-12 md:gap-12">
+        {/* Sticky index — desktop only; on phones it can't stick, so each step
+            carries its own number and title instead */}
+        <div className="hidden md:col-span-4 md:block">
           <div className="md:sticky md:top-28">
             <div className="relative h-[7rem] overflow-hidden">
               {approach.map((step, i) => (
@@ -96,9 +97,12 @@ export default function Approach() {
               ref={(el) => {
                 panelsRef.current[i] = el;
               }}
-              className="flex min-h-[48vh] flex-col justify-center border-t border-ink-900/10 py-10 first:border-t-0 md:min-h-[54vh]"
+              className="flex flex-col justify-center border-t border-ink-900/10 py-8 first:border-t-0 first:pt-0 md:min-h-[54vh] md:py-10 md:first:pt-10"
             >
-              <span className="u-label mb-6 md:hidden">{step.n}</span>
+              <p className="mb-4 flex items-baseline gap-3 md:hidden">
+                <span className="u-label">{step.n}</span>
+                <span className="font-display text-lg text-oxblood">{step.title}</span>
+              </p>
               <p className="d-3 max-w-[20ch] font-display text-ink-900">
                 {step.lede}
               </p>

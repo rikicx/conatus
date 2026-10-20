@@ -1,25 +1,18 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import Link from "next/link";
 import { useScroll, useTransform, motion, useReducedMotion } from "motion/react";
 import HeroVideo from "@/components/motion/HeroVideo";
 import { contact } from "@/data/site";
+import { useMediaQuery } from "@/lib/useMediaQuery";
 
 export default function Hero() {
   const ref = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
   // the scroll fade/drift only runs side by side with the video (lg+); on phones the
   // text sits below the video and would already be fading when the CTA scrolls in
-  const [wide, setWide] = useState(false);
-
-  useEffect(() => {
-    const mq = window.matchMedia("(min-width: 1024px)");
-    const sync = () => setWide(mq.matches);
-    sync();
-    mq.addEventListener("change", sync);
-    return () => mq.removeEventListener("change", sync);
-  }, []);
+  const wide = useMediaQuery("(min-width: 1024px)");
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],

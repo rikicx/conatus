@@ -82,7 +82,7 @@ export default function Services() {
         {services.map((s, i) => (
           <article
             key={s.id}
-            className="group relative flex shrink-0 flex-col justify-between border border-ink-900/12 bg-bone p-7 md:mr-8 md:h-[64vh] md:w-[33vw] md:p-9"
+            className="group relative flex shrink-0 flex-col justify-between border border-ink-900/12 bg-bone p-6 md:mr-8 md:h-[64vh] md:w-[33vw] md:p-9"
           >
             <div className="flex items-center justify-between">
               <span className="text-sm font-medium tracking-[0.16em] text-oxblood">
@@ -93,7 +93,7 @@ export default function Services() {
               </span>
             </div>
 
-            <div className="my-6 aspect-square w-full overflow-hidden md:my-0 md:aspect-[4/3]">
+            <div className="my-5 aspect-square w-full overflow-hidden md:my-0 md:aspect-[4/3]">
               <div className="svc-img h-full w-[112%] -translate-x-[6%]">
                 <PlacedImage
                   seed={s.seed}

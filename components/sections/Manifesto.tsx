@@ -13,6 +13,7 @@ export default function Manifesto() {
           <SplitText
             as="h2"
             id="manifesto-h"
+            flowOnMobile
             className="d-2 font-display text-ink-900"
             lines={[
               "Conatus é o esforço pelo qual",

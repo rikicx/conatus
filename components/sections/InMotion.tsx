@@ -5,10 +5,13 @@ import { useScroll, useTransform, motion, useReducedMotion } from "motion/react"
 import { placeholder } from "@/lib/utils";
 import { galleryImages } from "@/data/site";
 import Image from "next/image";
+import { useMediaQuery } from "@/lib/useMediaQuery";
 
 export default function InMotion() {
   const ref = useRef<HTMLElement>(null);
   const reduce = useReducedMotion();
+  // the sideways drift needs room: on phones the title would run off the screen
+  const wide = useMediaQuery("(min-width: 768px)");
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
@@ -30,8 +33,8 @@ export default function InMotion() {
         <p className="u-label">02 — O corpo trabalhando</p>
         <motion.h2
           id="inmotion-h"
-          style={reduce ? undefined : { x: wordX }}
-          className="d-hero mt-4 whitespace-nowrap font-display"
+          style={reduce || !wide ? undefined : { x: wordX }}
+          className="d-hero mt-4 font-display md:whitespace-nowrap"
         >
           Em movimento
         </motion.h2>
@@ -71,7 +74,7 @@ export default function InMotion() {
         })}
       </div>
 
-      <div className="u-container mt-20">
+      <div className="u-container mt-14 md:mt-20">
         <p className="max-w-[40ch] text-lg text-paper/70">
           Amplitude, apoio, transferência de peso, controle na volta. É isso que
           se observa numa sessão — e é isso que a progressão registra.
