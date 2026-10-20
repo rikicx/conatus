@@ -21,7 +21,7 @@ export default function Visit() {
                 href={contact.whatsappMessage}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-1 block font-display text-2xl hover:text-oxblood"
+                className="mt-1 flex min-h-11 items-center font-display text-2xl hover:text-oxblood"
               >
                 {contact.phoneDisplay}
               </a>
@@ -70,7 +70,7 @@ export default function Visit() {
               href={contact.mapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-[0.7rem] uppercase tracking-[0.16em] text-ink-500 hover:text-oxblood"
+              className="u-tap font-mono text-[0.8125rem] uppercase tracking-[0.16em] text-ink-500 hover:text-oxblood"
             >
               Abrir no Google Maps ↗
             </a>

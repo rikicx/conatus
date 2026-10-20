@@ -85,10 +85,10 @@ export default function Services() {
             className="group relative flex shrink-0 flex-col justify-between border border-ink-900/12 bg-bone p-7 md:mr-8 md:h-[64vh] md:w-[33vw] md:p-9"
           >
             <div className="flex items-center justify-between">
-              <span className="text-xs font-medium tracking-[0.16em] text-oxblood">
+              <span className="text-sm font-medium tracking-[0.16em] text-oxblood">
                 {s.index}
               </span>
-              <span className="text-xs text-ink-300">
+              <span className="text-sm text-ink-500">
                 {String(i + 1).padStart(2, "0")} / {String(services.length).padStart(2, "0")}
               </span>
             </div>
@@ -111,10 +111,10 @@ export default function Services() {
               <h3 className="font-display text-[clamp(1.5rem,2.4vw,2rem)] leading-tight">
                 {s.name}
               </h3>
-              <p className="mt-1 text-[0.7rem] font-medium uppercase tracking-[0.14em] text-oxblood">
+              <p className="mt-1 text-[0.8125rem] font-medium uppercase tracking-[0.14em] text-oxblood">
                 {s.summary}
               </p>
-              <p className="mt-4 max-w-[42ch] text-sm leading-relaxed text-ink-700">
+              <p className="mt-4 max-w-[42ch] text-base leading-relaxed md:text-sm text-ink-700">
                 {s.body}
               </p>
             </div>
@@ -127,7 +127,7 @@ export default function Services() {
           </p>
           <Link
             href="/contato"
-            className="u-action mt-5 inline-flex w-fit items-center gap-3 border-b border-ink-900 pb-1 transition-colors hover:border-oxblood hover:text-oxblood"
+            className="u-tap u-action mt-5 inline-flex w-fit items-center gap-3 border-b border-ink-900 pb-1 transition-colors hover:border-oxblood hover:text-oxblood"
           >
             Começa pela avaliação →
           </Link>

@@ -75,7 +75,7 @@ export default function Approach() {
                     />
                   </span>
                   <span
-                    className={`font-mono text-[0.7rem] uppercase tracking-[0.14em] transition-colors duration-300 ${
+                    className={`font-mono text-[0.8125rem] uppercase tracking-[0.14em] transition-colors duration-300 ${
                       i === active ? "text-ink-900" : "text-ink-300"
                     }`}
                   >

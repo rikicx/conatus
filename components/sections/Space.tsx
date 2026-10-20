@@ -44,7 +44,7 @@ export default function Space() {
             href={contact.mapsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-4 inline-flex items-center gap-2 border-b border-ink-900 pb-1 font-mono text-[0.7rem] uppercase tracking-[0.16em] hover:border-oxblood hover:text-oxblood"
+            className="u-tap mt-4 inline-flex items-center gap-2 border-b border-ink-900 pb-1 font-mono text-[0.8125rem] uppercase tracking-[0.16em] hover:border-oxblood hover:text-oxblood"
           >
             Ver no mapa ↗
           </a>

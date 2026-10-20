@@ -6,7 +6,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
   return (
     <footer className="section-dark relative overflow-hidden">
-      <div className="u-container pt-24 pb-10">
+      <div className="u-container pt-24 pb-[calc(6rem+env(safe-area-inset-bottom))] md:pb-10">
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-6">
             <p className="u-label">Conatus — Vila Mariana</p>
@@ -17,7 +17,7 @@ export default function Footer() {
               href={contact.whatsappMessage}
               target="_blank"
               rel="noopener noreferrer"
-              className="u-action mt-8 inline-flex items-center gap-3 text-clay transition-colors hover:text-paper"
+              className="u-action mt-8 inline-flex min-h-11 items-center gap-3 text-clay transition-colors hover:text-paper"
             >
               Agendar uma avaliação
               <span aria-hidden>↗</span>
@@ -39,7 +39,7 @@ export default function Footer() {
               href={contact.mapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-4 inline-block font-mono text-[0.7rem] uppercase tracking-[0.16em] text-clay hover:text-paper"
+              className="mt-2 inline-flex min-h-11 items-center font-mono text-[0.8125rem] uppercase tracking-[0.16em] text-clay hover:text-paper"
             >
               Ver no mapa ↗
             </a>
@@ -47,9 +47,9 @@ export default function Footer() {
 
           <div className="md:col-span-3">
             <p className="u-label">Contato</p>
-            <ul className="mt-5 space-y-2 text-paper/80">
+            <ul className="mt-3 text-paper/80">
               <li>
-                <a href={`tel:+${contact.phoneRaw}`} className="hover:text-paper">
+                <a href={`tel:+${contact.phoneRaw}`} className="inline-flex min-h-11 items-center hover:text-paper">
                   {contact.phoneDisplay}
                 </a>
               </li>
@@ -58,7 +58,7 @@ export default function Footer() {
                   href={contact.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-paper"
+                  className="inline-flex min-h-11 items-center hover:text-paper"
                 >
                   {contact.instagramHandle}
                 </a>
@@ -66,12 +66,12 @@ export default function Footer() {
               <li className="pt-2 text-sm text-paper/55">{contact.hoursNote}</li>
             </ul>
 
-            <ul className="mt-8 space-y-2">
+            <ul className="mt-6">
               {nav.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="font-mono text-[0.7rem] uppercase tracking-[0.16em] text-paper/60 hover:text-paper"
+                    className="inline-flex min-h-11 items-center font-mono text-[0.8125rem] uppercase tracking-[0.16em] text-paper/70 hover:text-paper"
                   >
                     {item.label}
                   </Link>
@@ -82,7 +82,7 @@ export default function Footer() {
         </div>
 
         <div className="u-rule mt-16" />
-        <div className="mt-6 flex flex-col items-start justify-between gap-4 text-xs text-paper/50 md:flex-row md:items-center">
+        <div className="mt-6 flex flex-col items-start justify-between gap-4 text-sm text-paper/60 md:flex-row md:items-center">
           <Wordmark className="text-paper" />
           <p>
             © {year} {site.name}. Fisioterapia · Pilates · Musculação 50+.

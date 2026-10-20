@@ -138,6 +138,17 @@ html.lenis body { height: auto; }
   text-transform: uppercase;
 }
 
+/* Touch target — grows the hit area to ≥44px on touch screens without
+   changing the visual size of small inline links. */
+.u-tap { position: relative; }
+@media (pointer: coarse) {
+  .u-tap::after {
+    content: "";
+    position: absolute;
+    inset: -12px -6px;
+  }
+}
+
 .u-rule {
   height: 1px;
   background: color-mix(in oklab, var(--color-ink-900) 14%, transparent);

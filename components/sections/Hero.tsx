@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useScroll, useTransform, motion, useReducedMotion } from "motion/react";
 import HeroVideo from "@/components/motion/HeroVideo";
@@ -9,6 +9,17 @@ import { contact } from "@/data/site";
 export default function Hero() {
   const ref = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
+  // the scroll fade/drift only runs side by side with the video (lg+); on phones the
+  // text sits below the video and would already be fading when the CTA scrolls in
+  const [wide, setWide] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const sync = () => setWide(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
@@ -23,13 +34,13 @@ export default function Hero() {
       className="relative min-h-[100svh] w-full overflow-hidden bg-paper"
       aria-label="Conatus — tendência ao movimento"
     >
-      <div className="u-container grid min-h-[100svh] items-center gap-y-8 pb-16 lg:grid-cols-12 lg:gap-x-8 lg:pt-24 lg:pb-24">
+      <div className="u-container grid min-h-[100svh] items-center gap-y-6 pb-16 lg:gap-y-8 lg:grid-cols-12 lg:gap-x-8 lg:pt-24 lg:pb-24">
         {/* Text */}
         <motion.div
-          style={reduce ? undefined : { y: textY, opacity: fade }}
+          style={reduce || !wide ? undefined : { y: textY, opacity: fade }}
           className="relative z-10 lg:col-span-6"
         >
-          <p className="mb-6 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.1em] text-ink-700 md:text-base">
+          <p className="mb-5 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.1em] text-ink-700 md:text-base">
             <span className="inline-block h-px w-10 shrink-0 bg-oxblood" />
             Musculação e fisioterapia para os 50+
           </p>
@@ -52,13 +63,13 @@ export default function Hero() {
             </span>
           </h1>
 
-          <p className="mt-7 max-w-[46ch] text-lg leading-relaxed text-ink-700">
+          <p className="mt-5 max-w-[46ch] lg:mt-7 text-lg leading-relaxed text-ink-700">
             Musculação orientada e fisioterapia especializada para quem
             passou dos 50 — devolvendo força, amplitude e confiança de
             movimento, na Vila Mariana.
           </p>
 
-          <div className="mt-9 flex flex-wrap items-center gap-x-8 gap-y-4">
+          <div className="mt-7 flex flex-wrap lg:mt-9 items-center gap-x-8 gap-y-4">
             <a
               href={contact.whatsappMessage}
               target="_blank"
@@ -70,7 +81,7 @@ export default function Hero() {
             </a>
             <Link
               href="/#o-que-fazemos"
-              className="u-action text-ink-700 underline decoration-ink-300 underline-offset-8 transition-colors hover:text-oxblood hover:decoration-oxblood"
+              className="u-tap u-action text-ink-700 underline decoration-ink-300 underline-offset-8 transition-colors hover:text-oxblood hover:decoration-oxblood"
             >
               O que fazemos
             </Link>
@@ -82,7 +93,7 @@ export default function Hero() {
         {/* Media — half and half. The video is the hero's background: a full-bleed band
             on top on phones, the right half of the screen on desktop (it is positioned
             against the section, since this wrapper is static from lg up). */}
-        <div className="relative order-first -mx-[var(--gutter)] h-[64svh] lg:static lg:order-none lg:mx-0 lg:h-0 lg:col-span-5 lg:col-start-8">
+        <div className="relative order-first -mx-[var(--gutter)] h-[40svh] lg:static lg:order-none lg:mx-0 lg:h-0 lg:col-span-5 lg:col-start-8">
           <div
             aria-hidden
             className="absolute inset-0 z-0 overflow-hidden bg-paper-deep lg:inset-auto lg:right-0 lg:top-0 lg:h-full lg:w-1/2"

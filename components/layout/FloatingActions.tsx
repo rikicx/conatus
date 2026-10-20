@@ -5,11 +5,16 @@ import { contact } from "@/data/site";
 
 export default function FloatingActions() {
   const [showTop, setShowTop] = useState(false);
+  const [showBar, setShowBar] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     const id = requestAnimationFrame(() => setMounted(true));
-    const onScroll = () => setShowTop(window.scrollY > window.innerHeight * 1.1);
+    const onScroll = () => {
+      setShowTop(window.scrollY > window.innerHeight * 1.1);
+      // the hero carries its own CTA; the bar takes over once it has scrolled away
+      setShowBar(window.scrollY > window.innerHeight * 0.9);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
@@ -29,8 +34,41 @@ export default function FloatingActions() {
   };
 
   return (
+    <>
+    {/* Phones: one thumb-reach action bar instead of a stack of icons over the text —
+        the main action sits on the right, under the (usually right) thumb */}
     <div
-      className={`fixed right-4 z-40 flex flex-col gap-2 transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none md:right-6 ${
+      className={`fixed inset-x-0 bottom-0 z-40 border-t border-ink-900/10 bg-paper/95 backdrop-blur-md transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none md:hidden ${
+        showBar ? "translate-y-0" : "pointer-events-none translate-y-full"
+      }`}
+      style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
+      aria-hidden={!showBar}
+    >
+      <div className="u-container flex gap-2 py-2.5">
+        <a
+          href={`tel:+${contact.phoneRaw}`}
+          tabIndex={showBar ? undefined : -1}
+          aria-label={`Ligar para a Conatus — ${contact.phoneDisplay}`}
+          className="u-action flex h-[3.25rem] items-center justify-center gap-2 border border-ink-900/25 px-4 text-ink-900 transition-colors active:bg-ink-900 active:text-paper"
+        >
+          <PhoneIcon />
+          Ligar
+        </a>
+        <a
+          href={contact.whatsappMessage}
+          target="_blank"
+          rel="noopener noreferrer"
+          tabIndex={showBar ? undefined : -1}
+          className="u-action flex h-[3.25rem] flex-1 items-center justify-center gap-2.5 bg-whatsapp text-white transition-colors active:bg-whatsapp-dark"
+        >
+          <WhatsAppIcon />
+          Agendar avaliação
+        </a>
+      </div>
+    </div>
+
+    <div
+      className={`fixed right-4 z-40 hidden flex-col gap-2 transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none md:flex md:right-6 ${
         mounted ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
       }`}
       style={{ bottom: "calc(1rem + env(safe-area-inset-bottom))" }}
@@ -93,5 +131,28 @@ export default function FloatingActions() {
         </span>
       </a>
     </div>
+    </>
+  );
+}
+
+function WhatsAppIcon() {
+  return (
+    <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+      <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.1h-.01a8.23 8.23 0 0 1-4.19-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.36c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.19 8.19 0 0 1 2.41 5.83c0 4.55-3.7 8.24-8.24 8.24Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.8-.78.97-.15.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.39.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.42l-.48-.01c-.16 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.57.12.16 1.75 2.67 4.25 3.74.59.26 1.06.41 1.42.52.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29Z" />
+    </svg>
+  );
+}
+
+function PhoneIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path
+        d="M4.5 4h4l1.5 5-2.5 1.5a12.5 12.5 0 0 0 6 6L15 14l5 1.5v4a2 2 0 0 1-2.18 2C9.9 20.94 3.06 14.1 2.5 6.18A2 2 0 0 1 4.5 4Z"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinejoin="round"
+        strokeLinecap="round"
+      />
+    </svg>
   );
 }

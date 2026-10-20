@@ -39,7 +39,7 @@ export default function Team() {
             {disciplines.map((d) => (
               <li
                 key={d}
-                className="border border-ink-900/20 px-3 py-1.5 text-[0.65rem] font-medium uppercase tracking-[0.14em] text-ink-500"
+                className="border border-ink-900/20 px-3 py-1.5 text-[0.8125rem] font-medium uppercase tracking-[0.14em] text-ink-500"
               >
                 {d}
               </li>

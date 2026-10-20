@@ -86,7 +86,7 @@ export default function MenuOverlay({
               href={contact.whatsappMessage}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-[0.7rem] uppercase tracking-[0.16em] text-clay hover:text-paper"
+              className="u-action inline-flex min-h-12 items-center gap-2 bg-whatsapp px-5 text-white transition-colors hover:bg-whatsapp-dark"
             >
               WhatsApp {contact.phoneDisplay} ↗
             </a>

@@ -89,7 +89,7 @@ export default function Header() {
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-controls="menu-overlay"
-            className={`relative z-[80] flex h-10 w-10 items-center justify-center lg:hidden ${
+            className={`relative z-[80] -mr-2 flex h-11 w-11 items-center justify-center lg:hidden ${
               open ? "text-paper" : "text-ink-900"
             }`}
           >
