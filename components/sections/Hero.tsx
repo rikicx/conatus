@@ -75,7 +75,7 @@ export default function Hero() {
           </div>
 
           <p className="mt-5 text-base font-medium text-ink-900">
-            Avaliação inicial <Free />.
+            Avaliação inicial <span className="whitespace-nowrap"><Free />.</span>
           </p>
         </motion.div>
 

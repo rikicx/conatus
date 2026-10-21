@@ -153,7 +153,7 @@ export const services = [
     body: "Uma leitura completa de marcha, equilíbrio, força e amplitude. Define o plano e o que tratar primeiro, seja qual for o motivo que trouxe você até aqui.",
     seed: "avaliacao",
     alt: "Profissional da Conatus aferindo a pressão arterial de uma aluna antes do treino.",
-    position: "object-[center_6%]",
+    position: "object-[center_18%]",
   },
   {
     id: "fisioterapia",

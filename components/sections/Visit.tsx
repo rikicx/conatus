@@ -53,7 +53,7 @@ export default function Visit() {
             </span>
           </a>
           <p className="mt-4 text-base font-medium text-ink-900">
-            Avaliação inicial <Free />.
+            Avaliação inicial <span className="whitespace-nowrap"><Free />.</span>
           </p>
         </div>
 
