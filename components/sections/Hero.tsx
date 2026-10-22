@@ -69,7 +69,11 @@ export default function Hero() {
               rel="noopener noreferrer"
               className="group u-action inline-flex items-center gap-3 bg-ink-900 px-7 py-4 text-paper transition-colors duration-300 hover:bg-oxblood"
             >
-              Clique aqui para agendar avaliação
+              {/* two lines on purpose — client requirement */}
+              <span className="text-left">
+                <span className="block">Clique aqui para</span>
+                <span className="block">Agendar sua avaliação</span>
+              </span>
               <span aria-hidden className="transition-transform duration-[400ms] group-hover:translate-x-1">→</span>
             </a>
           </div>
