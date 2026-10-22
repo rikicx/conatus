@@ -112,21 +112,35 @@ export default function Approach() {
               <p className="mt-6 max-w-[52ch] text-lg leading-relaxed text-ink-700">
                 {withFree(step.body)}
               </p>
-              {step.capture && (
-                <div
-                  className={`mt-8 grid gap-4 ${
-                    step.capture.length > 1 ? "grid-cols-2" : "max-w-sm"
-                  }`}
-                >
-                  {step.capture.map((c) => (
-                    <CapturePlaceholder
-                      key={c.title}
-                      {...c}
-                      className={c.kind === "video" ? "aspect-[4/5]" : "aspect-[3/4]"}
-                    />
-                  ))}
-                </div>
-              )}
+              {step.capture &&
+                (step.capture.length > 1 ? (
+                  <>
+                    {/* phones: a swipeable strip, the next card peeking in;
+                        md+: side by side */}
+                    <div className="mt-8 -mx-[var(--gutter)] flex snap-x snap-mandatory scroll-px-[var(--gutter)] gap-4 overflow-x-auto px-[var(--gutter)] pb-2 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-2 md:overflow-visible md:px-0 md:pb-0 [&::-webkit-scrollbar]:hidden">
+                      {step.capture.map((c) => (
+                        <CapturePlaceholder
+                          key={c.title}
+                          {...c}
+                          className="aspect-[3/4] w-[80%] shrink-0 snap-start md:w-auto"
+                        />
+                      ))}
+                    </div>
+                    <p aria-hidden className="mt-3 font-mono text-[0.75rem] uppercase tracking-[0.14em] text-ink-500 md:hidden">
+                      Deslize para ver →
+                    </p>
+                  </>
+                ) : (
+                  <div className="mt-8 max-w-sm">
+                    {step.capture.map((c) => (
+                      <CapturePlaceholder
+                        key={c.title}
+                        {...c}
+                        className={c.kind === "video" ? "aspect-[4/5]" : "aspect-[3/4]"}
+                      />
+                    ))}
+                  </div>
+                ))}
             </div>
           ))}
         </div>
