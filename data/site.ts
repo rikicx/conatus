@@ -191,9 +191,8 @@ export const services = [
     index: "S5",
     name: "Nutrição",
     summary: "O treino não trabalha sozinho.",
-    body: "Sem tijolos não se levanta parede. A nutrição garante que o corpo receba o que precisa para se refazer e evoluir.",
     // confirmed by the clinic, Oct/2026
-    note: "Com a Dra. Jaqueline Bernardini (CRN-3 21819), às quintas-feiras. Alunos Conatus têm desconto.",
+    body: "Com a Dra. Jaqueline Bernardini (CRN-3 21819), às quintas-feiras. Alunos Conatus têm desconto.",
     seed: "nutricao",
     alt: "Dra. Jaqueline Bernardini, nutricionista da Conatus, sentada com um notebook no colo.",
     position: "object-[center_38%]",

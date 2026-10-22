@@ -94,7 +94,8 @@ export default function Services() {
               </span>
             </div>
 
-            <div className="my-5 aspect-square w-full overflow-hidden md:my-0 md:aspect-[4/3]">
+            {/* md+: the photo takes whatever height the copy leaves free */}
+            <div className="my-5 aspect-square w-full overflow-hidden md:my-3 md:aspect-auto md:min-h-0 md:flex-1">
               <div className="svc-img h-full w-[112%] -translate-x-[6%]">
                 <PlacedImage
                   seed={s.seed}
@@ -118,11 +119,6 @@ export default function Services() {
               <p className="mt-4 max-w-[42ch] text-base leading-relaxed md:text-sm text-ink-700">
                 {s.body}
               </p>
-              {"note" in s && (
-                <p className="mt-3 max-w-[42ch] text-base font-medium leading-relaxed text-ink-900 md:text-sm">
-                  {s.note}
-                </p>
-              )}
             </div>
           </article>
         ))}
