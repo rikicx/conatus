@@ -118,6 +118,11 @@ export default function Services() {
               <p className="mt-4 max-w-[42ch] text-base leading-relaxed md:text-sm text-ink-700">
                 {s.body}
               </p>
+              {"note" in s && (
+                <p className="mt-3 max-w-[42ch] text-base font-medium leading-relaxed text-ink-900 md:text-sm">
+                  {s.note}
+                </p>
+              )}
             </div>
           </article>
         ))}

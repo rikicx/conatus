@@ -4,8 +4,8 @@ export function cn(...classes: Array<string | false | null | undefined>): string
 
 /**
  * Conatus's own photography (real sessions at R. Cel. Diogo, 484), optimized
- * to WebP in /public/images/conatus. A few slots (nutrição, part of the
- * space section) still use temporary stock / earlier local images until
+ * to WebP in /public/images/conatus. A few slots (part of the space
+ * section) still use temporary stock / earlier local images until
  * dedicated photos exist. Keys are slot names; swap a file here and every
  * place that uses the slot updates.
  */
@@ -21,7 +21,7 @@ const IMAGES: Record<string, string> = {
   fisioterapia: "/images/conatus/orientacao-postura-ombros.webp",
   musculacao: "/images/conatus/leg-press-acompanhamento.webp",
   pilates: "/images/conatus/pilates-cadeira-50mais.webp",
-  nutricao: "photo-1620188467120-5042ed1eb5da", // TEMPORARY stock — no real nutrition photo yet
+  nutricao: "/images/conatus/nutricionista-jaqueline-bernardini.webp",
 
   // in motion (gallery)
   m1: "/images/conatus/uniforme-conatus-leg-press.webp",

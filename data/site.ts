@@ -2,7 +2,8 @@
    CONATUS — Content layer
    Every objective fact below is drawn from Conatus's own public
    channels (Instagram @clinica.conatus, Google Business Profile).
-   Verified: setembro/2026.
+   Verified: setembro/2026. Nutritionist (name, CRN, schedule, student
+   discount) confirmed directly by the clinic in outubro/2026.
    Narrative, headlines and microcopy are original.
    Do NOT add professionals, certifications, equipment brands,
    convênios, prices or testimonials that are not publicly confirmed.
@@ -190,10 +191,12 @@ export const services = [
     index: "S5",
     name: "Nutrição",
     summary: "O treino não trabalha sozinho.",
-    body: "Sem tijolos não se levanta parede. A equipe de nutrição garante que o corpo receba o que precisa para se refazer e evoluir.",
+    body: "Sem tijolos não se levanta parede. A nutrição garante que o corpo receba o que precisa para se refazer e evoluir.",
+    // confirmed by the clinic, Oct/2026
+    note: "Com a Dra. Jaqueline Bernardini (CRN-3 21819), às quintas-feiras. Alunos Conatus têm desconto.",
     seed: "nutricao",
-    alt: "Imagem ilustrativa: equipamento de treino em luz suave.",
-    position: undefined,
+    alt: "Dra. Jaqueline Bernardini, nutricionista da Conatus, sentada com um notebook no colo.",
+    position: "object-[center_38%]",
   },
 ] as const;
 
