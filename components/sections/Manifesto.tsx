@@ -17,8 +17,9 @@ export default function Manifesto() {
             className="d-2 font-display text-ink-900"
             lines={[
               "Conatus é o esforço pelo qual",
-              "todo corpo persiste em ser o que",
-              "é. Um impulso de continuar.",
+              "todo corpo persiste",
+              "em ser o que é.",
+              "Um impulso de continuar.",
             ]}
           />
           <div className="mt-10 grid gap-8 md:grid-cols-2">

@@ -68,6 +68,8 @@ type ApproachStep = {
   highlight?: string[];
   body: string;
   capture?: { kind: "foto" | "video"; title: string; brief: string }[];
+  /** real clips: a few seconds each, muted, in /public/video */
+  clips?: { src: string; poster: string; date?: string; label: string; alt: string }[];
 };
 
 export const approach: readonly ApproachStep[] = [
@@ -76,16 +78,20 @@ export const approach: readonly ApproachStep[] = [
     title: "Avaliação",
     lede: "Não importa o tamanho da sua limitação.",
     body: "Nós trabalharemos a solução de forma individualizada e adaptada. Marcha, equilíbrio, força, amplitude, histórico: a avaliação inicial define o ponto de partida — e é gratuita.",
-    capture: [
+    clips: [
       {
-        kind: "foto",
-        title: "Com andador",
-        brief: "Aluno(a) caminhando com apoio do andador. Corpo inteiro, de lado, na sala de treino. Com autorização de uso de imagem.",
+        src: "/video/mitiko-com-apoio.mp4",
+        poster: "/video/mitiko-com-apoio-poster.webp",
+        date: "Jun 2024", // approximate, per the clinic
+        label: "Com apoio",
+        alt: "Sra. Mitiko sobe em um step segurando as mãos de um profissional da Conatus, que a apoia.",
       },
       {
-        kind: "foto",
-        title: "Sem andador",
-        brief: "A mesma pessoa, mesmo enquadramento e local, caminhando sem apoio — depois da evolução.",
+        src: "/video/mitiko-andando-sozinha.mp4",
+        poster: "/video/mitiko-andando-sozinha-poster.webp",
+        date: "Atualmente",
+        label: "Andando sozinha",
+        alt: "Sra. Mitiko caminha sozinha, sem apoio, pela sala de treino da Conatus.",
       },
     ],
   },
@@ -96,9 +102,14 @@ export const approach: readonly ApproachStep[] = [
     body: "Passos mais curtos, insegurança ao mudar de direção, fraqueza nas pernas. Cada sinal é informação. Entender vem antes de tratar.",
     capture: [
       {
-        kind: "video",
-        title: "Sra. Mitiko caminhando devagar",
-        brief: "Plano aberto, câmera parada na altura do quadril, celular na vertical. 10 a 20 segundos sem cortes, no ritmo natural dela. Com autorização de uso de imagem.",
+        kind: "foto",
+        title: "Com andador",
+        brief: "Aluno(a) caminhando com apoio do andador. Corpo inteiro, de lado, na sala de treino. Com autorização de uso de imagem.",
+      },
+      {
+        kind: "foto",
+        title: "Sem andador",
+        brief: "A mesma pessoa, mesmo enquadramento e local, caminhando sem apoio — depois da evolução.",
       },
     ],
   },
@@ -258,7 +269,8 @@ export const proof = {
 
 export const galleryImages = [
   { seed: "m1", w: 900, h: 1200, alt: "Profissional de costas, com o logo da Conatus no uniforme, acompanha uma aluna no leg press." },
-  { seed: "m2", w: 1200, h: 900, alt: "Sala de musculação da Conatus em funcionamento, com alunos em treino acompanhados pela equipe." },
+  // slot waiting for a new photo (with people) — shown as a capture placeholder
+  { seed: "m2", w: 1200, h: 900, alt: "", capture: "Foto 2" },
   { seed: "m3", w: 900, h: 1200, alt: "Aluno treina em equipamento de musculação com orientação de um profissional da Conatus." },
   { seed: "m4", w: 1200, h: 900, alt: "Equipe da Conatus acompanhando alunos 50+ na sala de treino." },
   { seed: "m5", w: 900, h: 1200, alt: "Aluno no leg extension, com um profissional ao lado acompanhando a ficha de treino." },

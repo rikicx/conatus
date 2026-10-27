@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { approach } from "@/data/site";
 import { withFree } from "@/components/ui/Free";
 import CapturePlaceholder from "@/components/ui/CapturePlaceholder";
+import ClipVideo from "@/components/ui/ClipVideo";
 
 export default function Approach() {
   const [active, setActive] = useState(0);
@@ -112,24 +113,31 @@ export default function Approach() {
               <p className="mt-6 max-w-[52ch] text-lg leading-relaxed text-ink-700">
                 {withFree(step.body)}
               </p>
+              {step.clips && (
+                // vertical clips: capped on desktop so the pair isn't 650px tall
+                <div className="md:max-w-xl">
+                  <SwipeStrip>
+                    {step.clips.map((c) => (
+                      <ClipVideo
+                        key={c.src}
+                        {...c}
+                        className="aspect-[9/16] w-[80%] shrink-0 snap-start md:w-auto"
+                      />
+                    ))}
+                  </SwipeStrip>
+                </div>
+              )}
               {step.capture &&
                 (step.capture.length > 1 ? (
-                  <>
-                    {/* phones: a swipeable strip, the next card peeking in;
-                        md+: side by side */}
-                    <div className="mt-8 -mx-[var(--gutter)] flex snap-x snap-mandatory scroll-px-[var(--gutter)] gap-4 overflow-x-auto px-[var(--gutter)] pb-2 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-2 md:overflow-visible md:px-0 md:pb-0 [&::-webkit-scrollbar]:hidden">
-                      {step.capture.map((c) => (
-                        <CapturePlaceholder
-                          key={c.title}
-                          {...c}
-                          className="aspect-[3/4] w-[80%] shrink-0 snap-start md:w-auto"
-                        />
-                      ))}
-                    </div>
-                    <p aria-hidden className="mt-3 font-mono text-[0.75rem] uppercase tracking-[0.14em] text-ink-500 md:hidden">
-                      Deslize para ver →
-                    </p>
-                  </>
+                  <SwipeStrip>
+                    {step.capture.map((c) => (
+                      <CapturePlaceholder
+                        key={c.title}
+                        {...c}
+                        className="aspect-[3/4] w-[80%] shrink-0 snap-start md:w-auto"
+                      />
+                    ))}
+                  </SwipeStrip>
                 ) : (
                   <div className="mt-8 max-w-sm">
                     {step.capture.map((c) => (
@@ -190,5 +198,19 @@ function HighlightWords({ words }: { words: readonly string[] }) {
         );
       })}
     </p>
+  );
+}
+
+/** Phones: a swipeable strip with the next item peeking in. md+: side by side. */
+function SwipeStrip({ children }: { children: React.ReactNode }) {
+  return (
+    <>
+      <div className="mt-8 -mx-[var(--gutter)] flex snap-x snap-mandatory scroll-px-[var(--gutter)] gap-4 overflow-x-auto px-[var(--gutter)] pb-2 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-2 md:overflow-visible md:px-0 md:pb-0 [&::-webkit-scrollbar]:hidden">
+        {children}
+      </div>
+      <p aria-hidden className="mt-3 font-mono text-[0.75rem] uppercase tracking-[0.14em] text-ink-500 md:hidden">
+        Deslize para ver →
+      </p>
+    </>
   );
 }

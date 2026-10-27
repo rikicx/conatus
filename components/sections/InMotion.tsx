@@ -7,8 +7,10 @@ import { galleryImages } from "@/data/site";
 import Image from "next/image";
 import { useMediaQuery } from "@/lib/useMediaQuery";
 import Lightbox, { ZoomHint } from "@/components/ui/Lightbox";
+import CapturePlaceholder from "@/components/ui/CapturePlaceholder";
 
-const zoomImages = galleryImages.map((img) => ({
+const photos = galleryImages.filter((img) => !("capture" in img));
+const zoomImages = photos.map((img) => ({
   src: placeholder(img.seed, img.w, img.h),
   alt: img.alt,
   w: img.w,
@@ -62,6 +64,23 @@ export default function InMotion() {
               "md:col-span-4 md:col-start-1 md:-mt-16",
               "md:col-span-3 md:col-start-9 md:mt-10",
             ][i] || "md:col-span-4";
+          if ("capture" in img) {
+            return (
+              <motion.div
+                key={img.seed}
+                style={reduce || !wide ? undefined : { y: lanes[i] }}
+                className={`${span} col-span-1`}
+              >
+                <CapturePlaceholder
+                  kind="foto"
+                  title={img.capture}
+                  brief="Alunos e equipe em treino, com pessoas no quadro. Com autorização de uso de imagem."
+                  className="aspect-[4/3]"
+                />
+              </motion.div>
+            );
+          }
+          const z = photos.indexOf(img);
           return (
             <motion.figure
               key={img.seed}
@@ -71,12 +90,12 @@ export default function InMotion() {
             >
               <button
                 type="button"
-                onClick={() => setZoom(i)}
+                onClick={() => setZoom(z)}
                 aria-label={`Ampliar foto: ${img.alt}`}
                 className="block h-full w-full cursor-zoom-in"
               >
                 <Image
-                  src={zoomImages[i].src}
+                  src={zoomImages[z].src}
                   alt=""
                   width={img.w}
                   height={img.h}
