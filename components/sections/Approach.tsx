@@ -5,6 +5,8 @@ import { approach } from "@/data/site";
 import { withFree } from "@/components/ui/Free";
 import CapturePlaceholder from "@/components/ui/CapturePlaceholder";
 import ClipVideo from "@/components/ui/ClipVideo";
+import SignalIcons from "@/components/ui/SignalIcons";
+import Image from "next/image";
 
 export default function Approach() {
   const [active, setActive] = useState(0);
@@ -113,6 +115,19 @@ export default function Approach() {
               <p className="mt-6 max-w-[52ch] text-lg leading-relaxed text-ink-700">
                 {withFree(step.body)}
               </p>
+              {step.signalIcons && <SignalIcons />}
+              {step.photo && (
+                <figure className="media mt-8 max-w-sm">
+                  <Image
+                    src={step.photo.src}
+                    alt={step.photo.alt}
+                    width={step.photo.w}
+                    height={step.photo.h}
+                    sizes="(max-width: 768px) 100vw, 384px"
+                    className="h-auto w-full"
+                  />
+                </figure>
+              )}
               {step.clips && (
                 // vertical clips: capped on desktop so the pair isn't 650px tall
                 <div className="md:max-w-xl">

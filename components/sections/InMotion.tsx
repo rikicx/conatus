@@ -9,7 +9,7 @@ import { useMediaQuery } from "@/lib/useMediaQuery";
 import Lightbox, { ZoomHint } from "@/components/ui/Lightbox";
 import CapturePlaceholder from "@/components/ui/CapturePlaceholder";
 
-const photos = galleryImages.filter((img) => !("capture" in img));
+const photos = galleryImages.filter((img) => !img.capture);
 const zoomImages = photos.map((img) => ({
   src: placeholder(img.seed, img.w, img.h),
   alt: img.alt,
@@ -34,7 +34,7 @@ export default function InMotion() {
   const laneDown = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
   const wordX = useTransform(scrollYProgress, [0, 1], ["8%", "-30%"]);
 
-  const lanes = [laneUp, laneDown, laneUp, laneDown, laneUp, laneDown];
+  const lanes = [laneUp, laneDown, laneUp, laneDown, laneUp, laneUp, laneDown];
 
   return (
     <section
@@ -53,7 +53,9 @@ export default function InMotion() {
         </motion.h2>
       </div>
 
-      <div className="u-container mt-14 grid grid-cols-2 gap-4 md:mt-24 md:grid-cols-12 md:gap-6">
+      {/* phones: landscape shots run full width, portrait ones pair up;
+          dense flow keeps the pairs together */}
+      <div className="u-container mt-14 grid grid-flow-row-dense grid-cols-2 gap-4 md:mt-24 md:grid-flow-row md:grid-cols-12 md:gap-6">
         {galleryImages.map((img, i) => {
           const span =
             [
@@ -62,20 +64,22 @@ export default function InMotion() {
               "md:col-span-3 md:col-start-2 md:-mt-10",
               "md:col-span-6 md:col-start-6",
               "md:col-span-4 md:col-start-1 md:-mt-16",
+              // fills the gap between 05 and 07; on phones it goes last, full width
+              "order-last md:order-none md:col-span-4 md:col-start-5 md:mt-10",
               "md:col-span-3 md:col-start-9 md:mt-10",
             ][i] || "md:col-span-4";
-          if ("capture" in img) {
+          if (img.capture) {
             return (
               <motion.div
                 key={img.seed}
                 style={reduce || !wide ? undefined : { y: lanes[i] }}
-                className={`${span} col-span-1`}
+                className={`self-start ${img.w > img.h ? "col-span-2" : "col-span-1"} ${span}`}
               >
                 <CapturePlaceholder
                   kind="foto"
                   title={img.capture}
                   brief="Alunos e equipe em treino, com pessoas no quadro. Com autorização de uso de imagem."
-                  className="aspect-[4/3]"
+                  className={img.w > img.h ? "aspect-[4/3]" : "aspect-[3/4]"}
                 />
               </motion.div>
             );
@@ -85,7 +89,7 @@ export default function InMotion() {
             <motion.figure
               key={img.seed}
               style={reduce || !wide ? undefined : { y: lanes[i] }}
-              className={`media ${span} ${i % 2 ? "col-span-1" : "col-span-1"}`}
+              className={`media self-start ${img.w > img.h ? "col-span-2" : "col-span-1"} ${span}`}
               data-cursor="media"
             >
               <button

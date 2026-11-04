@@ -12,6 +12,7 @@ import { cn } from "@/lib/utils";
 export default function ClipVideo({
   src,
   poster,
+  stage,
   date,
   label,
   alt,
@@ -19,6 +20,8 @@ export default function ClipVideo({
 }: {
   src: string;
   poster: string;
+  /** "Antes" / "Depois" — the headline of the badge */
+  stage?: string;
   date?: string;
   label: string;
   alt: string;
@@ -61,9 +64,9 @@ export default function ClipVideo({
         className="h-full w-full object-cover"
       />
       <figcaption className="pointer-events-none absolute left-3 top-3 bg-ink-900/80 px-3 py-2 text-paper">
-        {date && <span className="block font-display text-lg font-semibold leading-tight">{date}</span>}
+        {stage && <span className="block font-display text-lg font-semibold leading-tight">{stage}</span>}
         <span className="block font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-paper/80">
-          {label}
+          {[date, label].filter(Boolean).join(" · ")}
         </span>
       </figcaption>
     </figure>

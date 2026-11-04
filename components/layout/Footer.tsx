@@ -88,7 +88,7 @@ export default function Footer() {
             © {year} {site.name}. Fisioterapia · Pilates · Musculação 50+.
           </p>
           <p className="font-mono uppercase tracking-[0.16em]">
-            23°34′S 46°38′O
+            Feito por Henrique M. Silva
           </p>
         </div>
       </div>

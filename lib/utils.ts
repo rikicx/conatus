@@ -25,11 +25,12 @@ const IMAGES: Record<string, string> = {
 
   // in motion (gallery)
   m1: "/images/conatus/uniforme-conatus-leg-press.webp",
-  m2: "/images/conatus/sala-de-musculacao-em-treino.webp",
+  m2: "/images/conatus/sala-de-treino-movimento-recepcao.webp",
   m3: "/images/conatus/treino-guiado-equipamento.webp",
-  m4: "/images/conatus/equipe-conatus-sala-de-treino.webp",
+  m4: "/images/conatus/sala-de-treino-alunos-equipe.webp",
   m5: "/images/conatus/leg-extension-acompanhamento.webp",
   m6: "/images/conatus/treino-50mais-ombros-02.webp",
+  m7: "/images/conatus/alunas-mesa-convivencia.webp",
 
   // team
   "team-1": "/images/conatus/equipe-conatus-aluna-caminhando.webp",
@@ -37,9 +38,9 @@ const IMAGES: Record<string, string> = {
   "team-3": "/images/conatus/sala-de-musculacao-em-treino.webp",
 
   // space
-  "space-1": "/images/conatus/estrutura-musculacao-01.webp",
+  "space-1": "/images/conatus/sala-de-musculacao-alunos-treinando.webp",
   "space-2": "/images/conatus/estrutura-pilates-01.webp",
-  "space-3": "/images/conatus/estrutura-musculacao-02.webp",
+  "space-3": "/images/conatus/equipe-acompanhando-alunos-50mais.webp",
 };
 
 const FALLBACK = "photo-1571902943202-507ec2618e8f";

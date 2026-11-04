@@ -1,35 +1,55 @@
 "use client";
 
-import { useRef } from "react";
+import { useCallback, useRef, useState } from "react";
 import { useScroll, useTransform, motion, useReducedMotion } from "motion/react";
 import { useMediaQuery } from "@/lib/useMediaQuery";
 import { contact } from "@/data/site";
 import Image from "next/image";
 import { placeholder } from "@/lib/utils";
 import CapturePlaceholder from "@/components/ui/CapturePlaceholder";
+import Lightbox, { ZoomHint } from "@/components/ui/Lightbox";
 
+/** A slot without `photo` renders as a capture placeholder (photo still to be shot). */
 type Slot = {
   title: string;
   brief?: string;
   photo?: { seed: string; w: number; h: number; alt: string };
+  sizes: string;
   className: string;
 };
 
 const spaceSlots: Slot[] = [
-  { title: "Foto 1", brief: "Sala de musculação em uso: alunos 50+ treinando, com a equipe acompanhando. Com autorização de uso de imagem.", className: "col-span-12 aspect-[16/9] md:col-span-8" },
+  {
+    title: "Sala de musculação",
+    photo: { seed: "space-1", w: 1200, h: 675, alt: "Sala de musculação da Conatus em uso, com alunos 50+ treinando nos aparelhos." },
+    sizes: "(max-width: 768px) 100vw, 55vw",
+    className: "col-span-12 aspect-[16/9] md:col-span-8",
+  },
   {
     title: "Pilates",
     photo: { seed: "space-2", w: 700, h: 900, alt: "Sala de Pilates da Conatus com reformer, equipamentos de madeira e espelhos." },
+    sizes: "(max-width: 768px) 50vw, 28vw",
     className: "col-span-6 aspect-[4/5] md:col-span-4 md:mt-24",
   },
-  { title: "Foto 2", brief: "Recepção ou corredor com pessoas circulando.", className: "col-span-6 aspect-[4/5] md:col-span-5 md:-mt-10 md:aspect-square" },
+  {
+    title: "Equipe e alunos",
+    photo: { seed: "space-3", w: 960, h: 720, alt: "Equipe da Conatus acompanhando de perto alunos 50+ nos aparelhos de musculação." },
+    sizes: "(max-width: 768px) 50vw, 35vw",
+    className: "col-span-6 aspect-[4/3] md:col-span-5 md:-mt-10",
+  },
 ];
+
+const zoomImages = spaceSlots.flatMap((s) =>
+  s.photo ? [{ src: placeholder(s.photo.seed, s.photo.w, s.photo.h), alt: s.photo.alt, w: s.photo.w, h: s.photo.h }] : []
+);
 
 export default function Space() {
   const ref = useRef<HTMLElement>(null);
   const reduce = useReducedMotion();
   // parallax only from md up — on phones it costs frames for little effect
   const wide = useMediaQuery("(min-width: 768px)");
+  const [zoom, setZoom] = useState<number | null>(null);
+  const closeZoom = useCallback(() => setZoom(null), []);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
@@ -71,8 +91,6 @@ export default function Space() {
         </div>
 
         <div className="md:col-span-8">
-          {/* photos with people in the space are on the way — capture
-              placeholders hold their slots until then */}
           <div className="grid grid-cols-12 gap-4 md:gap-6">
             {spaceSlots.map((slot, i) => (
               <motion.div
@@ -81,15 +99,23 @@ export default function Space() {
                 className={slot.className}
               >
                 {slot.photo ? (
-                  <figure className="media h-full w-full">
-                    <Image
-                      src={placeholder(slot.photo.seed, slot.photo.w, slot.photo.h)}
-                      alt={slot.photo.alt}
-                      width={slot.photo.w}
-                      height={slot.photo.h}
-                      sizes="(max-width: 768px) 50vw, 28vw"
-                      className="h-full w-full object-cover"
-                    />
+                  <figure className="media h-full w-full" data-cursor="media">
+                    <button
+                      type="button"
+                      onClick={() => setZoom(zoomImages.findIndex((z) => z.alt === slot.photo!.alt))}
+                      aria-label={`Ampliar foto: ${slot.photo.alt}`}
+                      className="relative block h-full w-full cursor-zoom-in"
+                    >
+                      <Image
+                        src={placeholder(slot.photo.seed, slot.photo.w, slot.photo.h)}
+                        alt=""
+                        width={slot.photo.w}
+                        height={slot.photo.h}
+                        sizes={slot.sizes}
+                        className="h-full w-full object-cover"
+                      />
+                      <ZoomHint />
+                    </button>
                   </figure>
                 ) : (
                   <CapturePlaceholder kind="foto" title={slot.title} brief={slot.brief ?? ""} className="h-full" />
@@ -99,6 +125,8 @@ export default function Space() {
           </div>
         </div>
       </div>
+
+      <Lightbox images={zoomImages} index={zoom} onChange={setZoom} onClose={closeZoom} />
     </section>
   );
 }

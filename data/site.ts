@@ -68,8 +68,12 @@ type ApproachStep = {
   highlight?: string[];
   body: string;
   capture?: { kind: "foto" | "video"; title: string; brief: string }[];
+  /** show the early warning signs (`signals`) as an icon grid */
+  signalIcons?: boolean;
+  /** a real photo in place of the capture placeholder */
+  photo?: { src: string; w: number; h: number; alt: string };
   /** real clips: a few seconds each, muted, in /public/video */
-  clips?: { src: string; poster: string; date?: string; label: string; alt: string }[];
+  clips?: { src: string; poster: string; stage?: string; date?: string; label: string; alt: string }[];
 };
 
 export const approach: readonly ApproachStep[] = [
@@ -82,6 +86,7 @@ export const approach: readonly ApproachStep[] = [
       {
         src: "/video/mitiko-com-apoio.mp4",
         poster: "/video/mitiko-com-apoio-poster.webp",
+        stage: "Antes",
         date: "Jun 2024", // approximate, per the clinic
         label: "Com apoio",
         alt: "Sra. Mitiko sobe em um step segurando as mãos de um profissional da Conatus, que a apoia.",
@@ -89,6 +94,7 @@ export const approach: readonly ApproachStep[] = [
       {
         src: "/video/mitiko-andando-sozinha.mp4",
         poster: "/video/mitiko-andando-sozinha-poster.webp",
+        stage: "Depois",
         date: "Atualmente",
         label: "Andando sozinha",
         alt: "Sra. Mitiko caminha sozinha, sem apoio, pela sala de treino da Conatus.",
@@ -100,31 +106,19 @@ export const approach: readonly ApproachStep[] = [
     title: "Leitura",
     lede: "O corpo dá sinais muito antes de uma queda.",
     body: "Passos mais curtos, insegurança ao mudar de direção, fraqueza nas pernas. Cada sinal é informação. Entender vem antes de tratar.",
-    capture: [
-      {
-        kind: "foto",
-        title: "Com andador",
-        brief: "Aluno(a) caminhando com apoio do andador. Corpo inteiro, de lado, na sala de treino. Com autorização de uso de imagem.",
-      },
-      {
-        kind: "foto",
-        title: "Sem andador",
-        brief: "A mesma pessoa, mesmo enquadramento e local, caminhando sem apoio — depois da evolução.",
-      },
-    ],
+    signalIcons: true,
   },
   {
     n: "03",
     title: "Movimento",
     lede: "Fisioterapia e treino na mesma direção.",
     body: "O plano combina reabilitação e exercício orientado. Nada genérico: cada série é ajustada à sua condição e aos seus limites, movimento a movimento.",
-    capture: [
-      {
-        kind: "foto",
-        title: "Movimento orientado",
-        brief: "Profissional ajustando o movimento de um aluno(a) 50+ em equipamento — mão do profissional guiando, rosto do aluno visível. Com autorização de uso de imagem.",
-      },
-    ],
+    photo: {
+      src: "/images/conatus/movimento-orientado-remada.webp",
+      w: 900,
+      h: 1200,
+      alt: "Aluno 50+ no aparelho de remada, orientado de perto por um profissional da Conatus com a ficha de treino.",
+    },
   },
   {
     n: "04",
@@ -132,26 +126,24 @@ export const approach: readonly ApproachStep[] = [
     lede: "Músculo é o que sustenta a",
     highlight: ["independência", "autonomia", "saúde"],
     body: "Depois dos 50, a perda de massa muscular acelera. O treino de força reconstrói o que o tempo tira — e com a nutrição andando junto, o corpo tem com o que se refazer.",
-    capture: [
-      {
-        kind: "foto",
-        title: "Treino de força",
-        brief: "Aluno(a) 50+ fazendo força de verdade (leg press, halter ou cabo), com o profissional ao lado. Esforço visível, corpo inteiro no quadro. Com autorização de uso de imagem.",
-      },
-    ],
+    photo: {
+      src: "/images/conatus/treino-de-forca-leg-press.webp",
+      w: 900,
+      h: 1200,
+      alt: "Aluna 50+ no leg press unilateral, acompanhada por um profissional da Conatus que confere a ficha de treino.",
+    },
   },
   {
     n: "05",
     title: "Acompanhamento",
     lede: "Progressão acompanhada, onde parte da solução é o empenho de cada cliente.",
     body: "Reavaliações periódicas mostram o que mudou. A carga sobe quando o corpo está pronto. O objetivo não é o desempenho — é a busca da saúde, da autonomia e de uma qualidade de vida sem dor.",
-    capture: [
-      {
-        kind: "foto",
-        title: "Reavaliação",
-        brief: "Profissional e aluno(a) revisando juntos a ficha ou um teste de reavaliação — o momento em que a progressão é registrada. Com autorização de uso de imagem.",
-      },
-    ],
+    photo: {
+      src: "/images/conatus/reavaliacao-ficha-de-treino.webp",
+      w: 900,
+      h: 1200,
+      alt: "Profissional da Conatus registra a progressão de uma aluna 50+ na ficha de treino, durante o exercício no leg press.",
+    },
   },
 ];
 
@@ -267,12 +259,16 @@ export const proof = {
   ratingUrl: contact.mapsUrl,
 } as const;
 
-export const galleryImages = [
+/* `capture` marks a slot waiting for a new photo (with people): it renders
+   as a capture placeholder instead of an image */
+type GalleryItem = { seed: string; w: number; h: number; alt: string; capture?: string };
+
+export const galleryImages: readonly GalleryItem[] = [
   { seed: "m1", w: 900, h: 1200, alt: "Profissional de costas, com o logo da Conatus no uniforme, acompanha uma aluna no leg press." },
-  // slot waiting for a new photo (with people) — shown as a capture placeholder
-  { seed: "m2", w: 1200, h: 900, alt: "", capture: "Foto 2" },
+  { seed: "m2", w: 1200, h: 832, alt: "Sala de treino da Conatus em movimento: alunos nos aparelhos com a equipe, e o balcão de convivência ao lado." },
   { seed: "m3", w: 900, h: 1200, alt: "Aluno treina em equipamento de musculação com orientação de um profissional da Conatus." },
-  { seed: "m4", w: 1200, h: 900, alt: "Equipe da Conatus acompanhando alunos 50+ na sala de treino." },
+  { seed: "m4", w: 1200, h: 701, alt: "Sala de treino cheia: alunos 50+ nos aparelhos, acompanhados de perto pela equipe da Conatus." },
   { seed: "m5", w: 900, h: 1200, alt: "Aluno no leg extension, com um profissional ao lado acompanhando a ficha de treino." },
+  { seed: "m7", w: 960, h: 720, alt: "Alunas à mesa da área de convivência da Conatus, com a equipe ao lado e a sala de treino ao fundo." },
   { seed: "m6", w: 900, h: 1200, alt: "Aluna treina ombros em equipamento enquanto um profissional acompanha com a ficha de treino." },
-] as const;
+];
