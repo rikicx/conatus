@@ -176,8 +176,8 @@ export const services = [
     summary: "Treino de força orientado.",
     body: "Musculação especializada para a maturidade, acompanhada movimento a movimento por profissionais. Contra a sarcopenia, a favor da autonomia.",
     seed: "musculacao",
-    alt: "Aluna treina no leg press enquanto um profissional de uniforme Conatus acompanha.",
-    position: "object-[center_30%]",
+    alt: "Alunos 50+ treinam nos aparelhos da sala de musculação da Conatus.",
+    position: "object-[30%_35%]",
   },
   {
     id: "pilates",
@@ -263,12 +263,14 @@ export const proof = {
    as a capture placeholder instead of an image */
 type GalleryItem = { seed: string; w: number; h: number; alt: string; capture?: string };
 
+/* Order matters: InMotion lays these out in pairs — three staggered columns
+   on desktop (portrait + landscape each), pairs and full-width landscapes on
+   phones. Keep portrait/landscape alternating as below when swapping photos. */
 export const galleryImages: readonly GalleryItem[] = [
   { seed: "m1", w: 900, h: 1200, alt: "Profissional de costas, com o logo da Conatus no uniforme, acompanha uma aluna no leg press." },
-  { seed: "m2", w: 1200, h: 832, alt: "Sala de treino da Conatus em movimento: alunos nos aparelhos com a equipe, e o balcão de convivência ao lado." },
-  { seed: "m3", w: 900, h: 1200, alt: "Aluno treina em equipamento de musculação com orientação de um profissional da Conatus." },
-  { seed: "m4", w: 1200, h: 701, alt: "Sala de treino cheia: alunos 50+ nos aparelhos, acompanhados de perto pela equipe da Conatus." },
-  { seed: "m5", w: 900, h: 1200, alt: "Aluno no leg extension, com um profissional ao lado acompanhando a ficha de treino." },
   { seed: "m7", w: 960, h: 720, alt: "Alunas à mesa da área de convivência da Conatus, com a equipe ao lado e a sala de treino ao fundo." },
+  { seed: "m2", w: 1200, h: 832, alt: "Sala de treino da Conatus em movimento: alunos nos aparelhos com a equipe, e o balcão de convivência ao lado." },
+  { seed: "m5", w: 900, h: 1200, alt: "Aluno no leg extension, com um profissional ao lado acompanhando a ficha de treino." },
   { seed: "m6", w: 900, h: 1200, alt: "Aluna treina ombros em equipamento enquanto um profissional acompanha com a ficha de treino." },
+  { seed: "m4", w: 1200, h: 701, alt: "Sala de treino cheia: alunos 50+ nos aparelhos, acompanhados de perto pela equipe da Conatus." },
 ];

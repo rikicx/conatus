@@ -19,14 +19,13 @@ const IMAGES: Record<string, string> = {
   // services
   avaliacao: "/images/conatus/avaliacao-pressao-arterial.webp",
   fisioterapia: "/images/conatus/orientacao-postura-ombros.webp",
-  musculacao: "/images/conatus/leg-press-acompanhamento.webp",
+  musculacao: "/images/conatus/musculacao-50mais-alunos-nos-aparelhos.webp",
   pilates: "/images/conatus/pilates-cadeira-50mais.webp",
   nutricao: "/images/conatus/nutricionista-jaqueline-bernardini.webp",
 
   // in motion (gallery)
   m1: "/images/conatus/uniforme-conatus-leg-press.webp",
   m2: "/images/conatus/sala-de-treino-movimento-recepcao.webp",
-  m3: "/images/conatus/treino-guiado-equipamento.webp",
   m4: "/images/conatus/sala-de-treino-alunos-equipe.webp",
   m5: "/images/conatus/leg-extension-acompanhamento.webp",
   m6: "/images/conatus/treino-50mais-ombros-02.webp",
