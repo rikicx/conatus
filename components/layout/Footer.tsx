@@ -82,13 +82,24 @@ export default function Footer() {
         </div>
 
         <div className="u-rule mt-16" />
-        <div className="mt-6 flex flex-col items-start justify-between gap-4 text-sm text-paper/60 md:flex-row md:items-center">
+        {/* md+: stop short of the floating buttons (right-6 + w-12 = 4.5rem from the edge) */}
+        <div className="mt-6 flex flex-col items-start justify-between gap-4 text-sm text-paper/60 md:flex-row md:items-center md:pr-[max(0px,calc(5.5rem-var(--gutter)))]">
           <Wordmark className="text-paper" />
           <p>
             © {year} {site.name}. Fisioterapia · Pilates · Musculação 50+.
           </p>
-          <p className="font-mono uppercase tracking-[0.16em]">
-            Feito por Henrique M. Silva
+          <p className="font-mono uppercase tracking-[0.16em] md:shrink-0 md:whitespace-nowrap">
+            Feito por{" "}
+            <a
+              href="https://henriquesilva.design/?utm_source=conatus&utm_medium=referral&utm_campaign=site-footer&utm_content=developer-credit"
+              target="_blank"
+              rel="noopener"
+              className="u-tap underline decoration-paper/30 underline-offset-4 transition-colors hover:text-paper hover:decoration-paper"
+            >
+              Henrique M. Silva
+              <span aria-hidden="true"> ↗</span>
+              <span className="sr-only"> (abre em nova aba)</span>
+            </a>
           </p>
         </div>
       </div>
