@@ -234,6 +234,48 @@ html.lenis body { height: auto; }
   filter: saturate(1) contrast(1.02);
 }
 
+/* Nutrição — foods pop out of the laptop, then float (FloatingFoods) */
+.foods { pointer-events: none; }
+.food { position: absolute; translate: -50% -50%; }
+.food-x,
+.food-y,
+.food-bob { display: block; }
+.food svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 6px 7px rgb(30 38 45 / 0.24));
+}
+.food-bob {
+  transform: rotate(var(--rot));
+  animation: food-bob var(--t) ease-in-out var(--bd) infinite alternate;
+}
+@keyframes food-bob {
+  from { transform: translateY(-6%) rotate(calc(var(--rot) - 4deg)); }
+  to { transform: translateY(6%) rotate(calc(var(--rot) + 4deg)); }
+}
+.foods[data-paused="true"] .food-bob { animation-play-state: paused; }
+/* set by JS until the card is on screen: each food waits inside the laptop */
+.foods[data-state="waiting"] .food-x { transform: translateX(var(--fx)); }
+.foods[data-state="waiting"] .food-y { transform: translateY(var(--fy)) scale(0.2); opacity: 0; }
+/* rises fast, drifts sideways slower — together the two curves draw an arc */
+.foods[data-state="playing"] .food-x {
+  animation: food-x 1.1s cubic-bezier(0.45, 0.05, 0.25, 1) var(--d) both;
+}
+.foods[data-state="playing"] .food-y {
+  animation: food-y 1.1s var(--ease-settle) var(--d) both;
+}
+@keyframes food-x {
+  from { transform: translateX(var(--fx)); }
+}
+@keyframes food-y {
+  from { transform: translateY(var(--fy)) scale(0.2); opacity: 0; }
+  25% { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .food-bob { animation: none; }
+}
+
 /* Dark section inversion */
 .section-dark {
   background: var(--color-ink-900);

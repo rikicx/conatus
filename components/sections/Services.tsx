@@ -7,6 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { services } from "@/data/site";
 import PlacedImage from "@/components/ui/PlacedImage";
 import { withFree } from "@/components/ui/Free";
+import FloatingFoods from "@/components/ui/FloatingFoods";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -96,7 +97,11 @@ export default function Services() {
 
             {/* md+: the photo takes whatever height the copy leaves free */}
             <div className="my-5 aspect-square w-full overflow-hidden md:my-3 md:aspect-auto md:min-h-0 md:flex-1">
-              <div className="svc-img h-full w-[112%] -translate-x-[6%]">
+              <div
+                className={`svc-img h-full w-[112%] -translate-x-[6%] ${
+                  s.id === "nutricao" ? "relative [container-type:size]" : ""
+                }`}
+              >
                 <PlacedImage
                   seed={s.seed}
                   w={900}
@@ -106,6 +111,12 @@ export default function Services() {
                   className="h-full w-full"
                   sizes="(max-width: 768px) 100vw, 33vw"
                 />
+                {s.id === "nutricao" && (
+                  // pinned to the photo's focal point, read from its object position
+                  <FloatingFoods
+                    focusY={Number(s.position.match(/(\d+)%\]$/)?.[1] ?? 50)}
+                  />
+                )}
               </div>
             </div>
 
